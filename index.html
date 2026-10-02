@@ -1,0 +1,4012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Last Dispatch</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #171717;
+    color: #eee8dc;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+    height: 68px;
+    background: #202020;
+    border-bottom: 1px solid #3c3c3c;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #e7d4a3;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 13px;
+    color: #aaa;
+}
+
+.status span {
+    color: #e1bd65;
+    font-weight: bold;
+}
+
+.reset-btn {
+    background: transparent;
+    color: #999;
+    border: 1px solid #555;
+    padding: 6px 10px;
+    font-size: 11px;
+    border-radius: 3px;
+}
+
+.reset-btn:hover {
+    color: white;
+    border-color: #888;
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 35px 25px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.section-title h1 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 36px;
+    font-weight: normal;
+    color: #eee5d5;
+}
+
+.section-title p {
+    margin-top: 8px;
+    color: #999;
+    font-size: 14px;
+}
+
+/* =====================================================
+   MAP
+===================================================== */
+
+.map-container {
+    position: relative;
+    height: 610px;
+    overflow: hidden;
+
+    border: 1px solid #57534b;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(210,185,130,.12),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(210,185,130,.08),
+            transparent 30%
+        ),
+        #38382f;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,.35);
+}
+
+.map-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            25deg,
+            transparent 48%,
+            rgba(255,255,255,.035) 49%,
+            transparent 50%
+        ),
+        linear-gradient(
+            150deg,
+            transparent 48%,
+            rgba(255,255,255,.025) 49%,
+            transparent 50%
+        );
+
+    background-size: 120px 120px;
+    pointer-events: none;
+}
+
+.map-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+
+    background: rgba(25,25,25,.9);
+    padding: 12px 16px;
+    border-left: 3px solid #c39b52;
+}
+
+.map-title strong {
+    color: #e5d3a5;
+    letter-spacing: 1px;
+}
+
+.map-title small {
+    color: #999;
+}
+
+/* =====================================================
+   MAP ROADS
+===================================================== */
+
+.road {
+    position: absolute;
+    background: rgba(200,190,160,.18);
+    pointer-events: none;
+}
+
+.road.horizontal {
+    height: 2px;
+    width: 90%;
+    left: 5%;
+}
+
+.road.vertical {
+    width: 2px;
+    height: 90%;
+    top: 5%;
+}
+
+.road.r1 {
+    top: 34%;
+    transform: rotate(-8deg);
+}
+
+.road.r2 {
+    top: 63%;
+    transform: rotate(7deg);
+}
+
+.road.v1 {
+    left: 35%;
+    transform: rotate(14deg);
+}
+
+.road.v2 {
+    left: 70%;
+    transform: rotate(-11deg);
+}
+
+/* =====================================================
+   MAP SITES
+===================================================== */
+
+.site {
+    position: absolute;
+    width: 145px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+}
+
+.site-button {
+    width: 62px;
+    height: 62px;
+
+    border-radius: 50%;
+    border: 2px solid #b99758;
+
+    background: #252525;
+    color: #d8b969;
+
+    font-size: 23px;
+
+    transition:
+        transform .2s,
+        background .2s,
+        box-shadow .2s;
+}
+
+.site-button:hover {
+    transform: scale(1.08);
+    background: #35312a;
+    box-shadow: 0 0 18px rgba(205,170,90,.3);
+}
+
+.site.completed .site-button {
+    background: #6b5733;
+    color: #fff;
+    border-color: #d1af67;
+}
+
+.site.quiz .site-button {
+    border-color: #899b8b;
+    color: #a8c2aa;
+}
+
+.site-label {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #ddd4c3;
+}
+
+.site-status {
+    margin-top: 4px;
+    font-size: 11px;
+    color: #888;
+}
+
+.s1 {
+    left: 20%;
+    top: 29%;
+}
+
+.s2 {
+    left: 48%;
+    top: 21%;
+}
+
+.s3 {
+    left: 74%;
+    top: 35%;
+}
+
+.s4 {
+    left: 29%;
+    top: 69%;
+}
+
+.s5 {
+    left: 60%;
+    top: 70%;
+}
+
+.s6 {
+    left: 83%;
+    top: 74%;
+}
+
+/* =====================================================
+   INFORMATION CARDS
+===================================================== */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.info-card {
+    background: #222;
+    border: 1px solid #393939;
+    padding: 18px;
+}
+
+.info-card h3 {
+    margin-top: 0;
+    color: #d5b56d;
+    font-family: Georgia, serif;
+}
+
+.info-card p {
+    color: #999;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =====================================================
+   PASSPHRASE
+===================================================== */
+
+.passphrase-panel {
+    margin-top: 20px;
+    padding: 22px;
+
+    background: #202020;
+    border: 1px solid #3c3c3c;
+}
+
+.passphrase-panel h2 {
+    margin-top: 0;
+    font-family: Georgia, serif;
+    font-weight: normal;
+    color: #e0cfaa;
+}
+
+.locked-message {
+    color: #888;
+}
+
+/* =====================================================
+   FRAGMENTS
+===================================================== */
+
+.fragments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.fragment {
+    background: #30291d;
+    border: 1px solid #9a783d;
+    color: #dfbd69;
+    padding: 8px 14px;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+/* =====================================================
+   SCRAMBLE
+===================================================== */
+
+.scramble-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.scramble-piece {
+    background: #292929;
+    color: #ddd;
+    border: 1px solid #555;
+    padding: 10px 15px;
+}
+
+.scramble-piece:hover {
+    border-color: #c3a05c;
+}
+
+.scramble-piece.selected {
+    background: #57482b;
+    color: #f0d18a;
+    border-color: #c3a05c;
+}
+
+.answer-box {
+    min-height: 48px;
+    padding: 12px;
+
+    background: #181818;
+    border: 1px dashed #555;
+
+    color: #cdbd9d;
+    font-family: monospace;
+
+    margin-bottom: 15px;
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.primary {
+    background: #8a6a36;
+    color: white;
+    border: 1px solid #b18d50;
+    padding: 10px 17px;
+    border-radius: 3px;
+}
+
+.primary:hover {
+    background: #a17d40;
+}
+
+.secondary {
+    background: #292929;
+    color: #ccc;
+    border: 1px solid #555;
+    padding: 10px 17px;
+    border-radius: 3px;
+}
+
+.secondary:hover {
+    background: #353535;
+}
+
+/* =====================================================
+   MODALS
+===================================================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+
+    background: rgba(0,0,0,.78);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.modal-box {
+    width: min(950px, 100%);
+    max-height: 92vh;
+    overflow-y: auto;
+
+    background: #202020;
+    border: 1px solid #555;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,.7);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 20px;
+
+    background: #282828;
+    border-bottom: 1px solid #484848;
+
+    color: #e2d0a8;
+    font-family: Georgia, serif;
+}
+
+.close {
+    border: none;
+    background: transparent;
+    color: #999;
+    font-size: 27px;
+}
+
+.close:hover {
+    color: white;
+}
+
+.modal-content {
+    padding: 20px;
+}
+
+/* =====================================================
+   VISUAL NOVEL
+===================================================== */
+
+.vn-screen {
+    background: #121212;
+    border: 1px solid #4a4a4a;
+    overflow: hidden;
+}
+
+.vn-background {
+    height: 330px;
+    position: relative;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.15),
+            rgba(0,0,0,.8)
+        ),
+        linear-gradient(
+            135deg,
+            #665c4d,
+            #292620
+        );
+
+    border-bottom: 1px solid #555;
+}
+
+.vn-era {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+
+    padding: 6px 10px;
+
+    background: rgba(0,0,0,.65);
+
+    color: #d2b467;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+/* =====================================================
+   CHARACTERS
+===================================================== */
+
+.character {
+    position: absolute;
+    bottom: 0;
+    width: 220px;
+    text-align: center;
+}
+
+.character.left {
+    left: 4%;
+}
+
+.character.right {
+    right: 4%;
+}
+
+.character-silhouette {
+    width: 120px;
+    height: 190px;
+
+    margin: auto;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            90deg,
+            #111,
+            #302a22
+        );
+
+    border-radius:
+        55px 55px 12px 12px;
+
+    border: 1px solid #62553f;
+}
+
+.character-silhouette::before {
+    content: "";
+
+    position: absolute;
+
+    width: 65px;
+    height: 65px;
+
+    border-radius: 50%;
+
+    background: #332d25;
+    border: 1px solid #75664c;
+
+    top: -45px;
+    left: 26px;
+}
+
+.character-name {
+    margin-top: 8px;
+    color: #dfbd6a;
+    font-size: 13px;
+}
+
+/* =====================================================
+   DIALOGUE
+===================================================== */
+
+.dialogue {
+    padding: 22px;
+
+    background:
+        linear-gradient(
+            #252525,
+            #191919
+        );
+
+    min-height: 250px;
+}
+
+.speaker {
+    color: #d8b668;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.dialogue-text {
+    min-height: 65px;
+
+    color: #e4e0d8;
+
+    font-family: Georgia, serif;
+
+    font-size: 17px;
+
+    line-height: 1.65;
+}
+
+/* =====================================================
+   CHOICES
+===================================================== */
+
+.choice-container {
+    margin-top: 18px;
+}
+
+.choice-label {
+    color: #888;
+    font-size: 12px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.story-choice {
+    display: block;
+
+    width: 100%;
+
+    text-align: left;
+
+    margin: 9px 0;
+
+    padding: 13px 15px;
+
+    background: #292929;
+
+    border: 1px solid #555;
+
+    color: #ddd;
+
+    transition:
+        background .2s,
+        border-color .2s,
+        transform .2s;
+}
+
+.story-choice:hover {
+    background: #38342d;
+    border-color: #b08a4c;
+    transform: translateX(3px);
+}
+
+.story-choice:disabled {
+    cursor: default;
+    opacity: .65;
+}
+
+/* decision indicator */
+
+.decision-recorded {
+    margin-top: 15px;
+
+    padding: 10px 13px;
+
+    background: #252116;
+
+    border-left: 3px solid #b08a4c;
+
+    color: #cdbd9d;
+
+    font-size: 12px;
+}
+
+/* =====================================================
+   VN CONTROLS
+===================================================== */
+
+.vn-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+/* =====================================================
+   COMPLETION
+===================================================== */
+
+.completion-screen {
+    text-align: center;
+
+    padding: 35px 25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #30291e,
+            #181818 65%
+        );
+}
+
+.completion-icon {
+    font-size: 50px;
+    color: #d8b665;
+    margin-bottom: 15px;
+}
+
+.completion-screen h2 {
+    font-family: Georgia, serif;
+    color: #ead9b3;
+    font-weight: normal;
+}
+
+.reward-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+}
+
+.reward {
+    background: #26231d;
+    border: 1px solid #80683b;
+    padding: 12px 18px;
+    color: #dabb6c;
+}
+
+.completion-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+/* =====================================================
+   EXPLORE
+===================================================== */
+
+.explore-screen {
+    background: #171717;
+    padding: 25px;
+}
+
+.explore-screen h2 {
+    margin-top: 0;
+    font-family: Georgia, serif;
+    color: #e2c98d;
+    font-weight: normal;
+}
+
+.explore-description {
+    color: #999;
+    line-height: 1.6;
+}
+
+.temp-image {
+    height: 330px;
+    margin: 20px 0;
+
+    border: 2px dashed #666;
+
+    background:
+        linear-gradient(
+            135deg,
+            #292929,
+            #1b1b1b
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: #777;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.temp-image span {
+    display: block;
+    margin-top: 8px;
+    color: #555;
+    font-size: 11px;
+}
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+.choice {
+    display: block;
+    width: 100%;
+    text-align: left;
+
+    background: #292929;
+
+    color: #ddd;
+
+    border: 1px solid #555;
+
+    padding: 14px;
+
+    margin: 10px 0;
+}
+
+.choice:hover {
+    border-color: #bd9b59;
+    background: #333;
+}
+
+/* =====================================================
+   MEMORY WALL
+===================================================== */
+
+.memory-wall {
+    background: #161616;
+    padding: 30px;
+    min-height: 500px;
+}
+
+.memory-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.memory-title h1 {
+    font-family: Georgia, serif;
+    color: #dfbd6a;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+.memory-title p {
+    color: #888;
+}
+
+.constellation {
+    position: relative;
+
+    height: 270px;
+
+    background:
+        radial-gradient(
+            circle at 30% 40%,
+            rgba(200,170,90,.08),
+            transparent 20%
+        ),
+        #0e0e0e;
+
+    border: 1px solid #333;
+
+    margin-bottom: 25px;
+
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #e0bd65;
+
+    box-shadow:
+        0 0 12px #d7b35c;
+}
+
+.memory-form {
+    max-width: 650px;
+    margin: auto;
+}
+
+.memory-form textarea {
+    width: 100%;
+    min-height: 100px;
+
+    background: #202020;
+
+    border: 1px solid #555;
+
+    color: #eee;
+
+    padding: 12px;
+
+    resize: vertical;
+}
+
+.memory-form textarea::placeholder {
+    color: #666;
+}
+
+.memory {
+    padding: 14px;
+    margin-top: 10px;
+
+    background: #222;
+
+    border-left: 3px solid #a37e3d;
+
+    color: #ddd;
+}
+
+.memory small {
+    color: #777;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width: 750px) {
+
+    header {
+        padding: 0 15px;
+    }
+
+    .status {
+        gap: 8px;
+        font-size: 10px;
+    }
+
+    main {
+        padding: 20px 12px;
+    }
+
+    .map-container {
+        height: 520px;
+    }
+
+    .site {
+        transform:
+            translate(-50%, -50%)
+            scale(.82);
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vn-background {
+        height: 270px;
+    }
+
+    .character {
+        transform: scale(.75);
+    }
+
+    .character.left {
+        left: -10%;
+    }
+
+    .character.right {
+        right: -10%;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo">
+        THE LAST DISPATCH
+    </div>
+
+    <div class="status">
+
+        <div>
+            STAMPS:
+            <span id="stampCount">0</span>
+        </div>
+
+        <div>
+            FRAGMENTS:
+            <span id="fragmentCount">0/4</span>
+        </div>
+
+        <button
+            class="reset-btn"
+            onclick="resetPrototype()">
+
+            RESET
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+<section id="mapSection">
+
+    <div class="section-title">
+
+        <h1>
+            Singapore, 1942
+        </h1>
+
+        <p>
+            Follow the trail. Recover the story.
+            Complete the dispatch.
+        </p>
+
+    </div>
+
+
+    <!-- MAP -->
+
+    <div class="map-container">
+
+        <div class="map-title">
+
+            <strong>
+                WWII HERITAGE TRAIL
+            </strong>
+
+            <br>
+
+            <small>
+                Select a location to begin
+            </small>
+
+        </div>
+
+        <div class="road horizontal r1"></div>
+        <div class="road horizontal r2"></div>
+        <div class="road vertical v1"></div>
+        <div class="road vertical v2"></div>
+
+
+        <!-- SITE 1 -->
+
+        <div
+            class="site s1"
+            id="site1">
+
+            <button
+                class="site-button"
+                onclick="openSite(1)">
+
+                ✦
+
+            </button>
+
+            <div class="site-label">
+                Fort Canning
+            </div>
+
+            <div
+                class="site-status"
+                id="siteStatus1">
+
+                Unexplored
+
+            </div>
+
+        </div>
+
+
+        <!-- SITE 2 -->
+
+        <div
+            class="site s2"
+            id="site2">
+
+            <button
+                class="site-button"
+                onclick="openSite(2)">
+
+                ◉
+
+            </button>
+
+            <div class="site-label">
+                Radio Station
+            </div>
+
+            <div
+                class="site-status"
+                id="siteStatus2">
+
+                Unexplored
+
+            </div>
+
+        </div>
+
+
+        <!-- SITE 3 -->
+
+        <div
+            class="site s3"
+            id="site3">
+
+            <button
+                class="site-button"
+                onclick="openSite(3)">
+
+                ▣
+
+            </button>
+
+            <div class="site-label">
+                Civilian Shelter
+            </div>
+
+            <div
+                class="site-status"
+                id="siteStatus3">
+
+                Unexplored
+
+            </div>
+
+        </div>
+
+
+        <!-- SITE 4 -->
+
+        <div
+            class="site s4"
+            id="site4">
+
+            <button
+                class="site-button"
+                onclick="openSite(4)">
+
+                ◆
+
+            </button>
+
+            <div class="site-label">
+                Battle Site
+            </div>
+
+            <div
+                class="site-status"
+                id="siteStatus4">
+
+                Unexplored
+
+            </div>
+
+        </div>
+
+
+        <!-- QUIZ -->
+
+        <div
+            class="site quiz s5"
+            id="site5">
+
+            <button
+                class="site-button"
+                onclick="openQuiz()">
+
+                ?
+
+            </button>
+
+            <div class="site-label">
+                History Quiz
+            </div>
+
+            <div class="site-status">
+                +2 stamps / correct
+            </div>
+
+        </div>
+
+
+        <!-- MEMORY -->
+
+        <div
+            class="site s6"
+            id="site6">
+
+            <button
+                class="site-button"
+                onclick="openSite(6)">
+
+                ✚
+
+            </button>
+
+            <div class="site-label">
+                Memory Hub
+            </div>
+
+            <div
+                class="site-status"
+                id="siteStatus6">
+
+                Locked
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- INFO -->
+
+    <div class="info-grid">
+
+        <div class="info-card">
+
+            <h3>
+                EXPLORE
+            </h3>
+
+            <p>
+                Visit the marked locations and
+                experience the story through
+                different characters.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h3>
+                COLLECT
+            </h3>
+
+            <p>
+                Complete a site to receive one
+                stamp and one fragment of the
+                daily dispatch.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h3>
+                REMEMBER
+            </h3>
+
+            <p>
+                Decode the final passphrase
+                before entering the Memory Wall.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- PASSPHRASE -->
+
+    <div class="passphrase-panel">
+
+        <h2>
+            Recovered Dispatch
+        </h2>
+
+        <p
+            id="passphraseLock"
+            class="locked-message">
+
+            Complete all four story locations
+            to recover the four fragments.
+
+        </p>
+
+        <div
+            id="fragmentDisplay"
+            class="fragments">
+        </div>
+
+
+        <div
+            id="passphraseArea"
+            class="hidden">
+
+            <p>
+                Your fragments have been recovered.
+                Arrange them to reconstruct the
+                daily passphrase.
+            </p>
+
+            <div
+                id="scramblePieces"
+                class="scramble-area">
+            </div>
+
+            <div
+                id="answerBox"
+                class="answer-box">
+
+                Click fragments in order.
+
+            </div>
+
+            <button
+                class="primary"
+                onclick="checkPassphrase()">
+
+                DECODE DISPATCH
+
+            </button>
+
+            <p
+                id="passphraseResult">
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     STORY MODAL
+===================================================== -->
+
+<div
+    id="storyModal"
+    class="modal hidden">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <strong id="storyTitle">
+                LOCATION
+            </strong>
+
+            <button
+                class="close"
+                onclick="closeStory()">
+
+                ×
+
+            </button>
+
+        </div>
+
+        <div class="modal-content">
+
+            <div
+                id="storyContainer"
+                class="vn-screen">
+
+                <div class="vn-background">
+
+                    <div class="vn-era">
+                        SINGAPORE — 1942
+                    </div>
+
+                    <div class="character left">
+
+                        <div class="character-silhouette">
+                        </div>
+
+                        <div
+                            class="character-name"
+                            id="charLeft">
+                        </div>
+
+                    </div>
+
+                    <div class="character right">
+
+                        <div class="character-silhouette">
+                        </div>
+
+                        <div
+                            class="character-name"
+                            id="charRight">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="dialogue">
+
+                    <div
+                        class="speaker"
+                        id="speaker">
+                    </div>
+
+                    <div
+                        class="dialogue-text"
+                        id="dialogueText">
+                    </div>
+
+                    <div
+                        id="storyChoices"
+                        class="choice-container">
+                    </div>
+
+                    <div class="vn-controls">
+
+                        <button
+                            class="secondary"
+                            onclick="closeStory()">
+
+                            BACK TO MAP
+
+                        </button>
+
+                        <button
+                            id="nextDialogue"
+                            class="primary"
+                            onclick="nextStory()">
+
+                            NEXT
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     QUIZ MODAL
+===================================================== -->
+
+<div
+    id="quizModal"
+    class="modal hidden">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <strong>
+                HISTORY QUIZ
+            </strong>
+
+            <button
+                class="close"
+                onclick="closeQuiz()">
+
+                ×
+
+            </button>
+
+        </div>
+
+        <div class="modal-content">
+
+            <div id="quizContent">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MEMORY WALL
+===================================================== -->
+
+<div
+    id="memoryModal"
+    class="modal hidden">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <strong>
+                MEMORY WALL
+            </strong>
+
+            <button
+                class="close"
+                onclick="closeMemory()">
+
+                ×
+
+            </button>
+
+        </div>
+
+        <div class="modal-content">
+
+            <div class="memory-wall">
+
+                <div class="memory-title">
+
+                    <h1>
+                        THE MEMORY WALL
+                    </h1>
+
+                    <p>
+                        Leave a small trace of your journey.
+                    </p>
+
+                </div>
+
+                <div
+                    class="constellation"
+                    id="constellation">
+                </div>
+
+                <div class="memory-form">
+
+                    <textarea
+                        id="memoryInput"
+                        placeholder="e.g. XX was here — remembering Singapore, 1942.">
+                    </textarea>
+
+                    <br><br>
+
+                    <button
+                        class="primary"
+                        onclick="submitMemory()">
+
+                        ADD TO MEMORY WALL
+
+                    </button>
+
+                    <div
+                        id="memories">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   STATE
+===================================================== */
+
+const STORAGE_KEY =
+    "lastDispatchPrototype";
+
+let state = {
+
+    stamps: 0,
+
+    completedSites: [],
+
+    fragments: [],
+
+    passphraseCompleted: false,
+
+    memories: []
+
+};
+
+
+/* =====================================================
+   STORY DATA
+=====================================================
+
+   Each scene can contain:
+
+   speaker
+   text
+   choices
+
+   choices contain:
+
+   text
+   next
+
+   "next" tells the game which
+   scene to go to.
+
+===================================================== */
+
+const sites = {
+
+
+/* =====================================================
+   FORT CANNING
+===================================================== */
+
+1: {
+
+    title:
+        "Fort Canning",
+
+    left:
+        "Captain Lim",
+
+    right:
+        "Corporal Tan",
+
+    fragment:
+        "SING",
+
+    story: [
+
+        {
+            speaker:
+                "Captain Lim",
+
+            text:
+                "8:10 PM. The command room is dim. A telephone rings somewhere beyond the corridor, but nobody moves to answer it. Outside, artillery can be heard in the distance.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Corporal Tan",
+
+            text:
+                "Captain, the eastern position has stopped responding. We haven't heard anything for nearly twenty minutes.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Captain Lim",
+
+            text:
+                "Then we have a problem. The withdrawal order has not reached them.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Captain Lim",
+
+            text:
+                "There are two ways to reach them. We can send someone across the compound, or we can try to restore the field telephone.",
+
+            choices: [
+
+                {
+                    text:
+                        "Send Corporal Tan with the message.",
+
+                    next:
+                        5
+                },
+
+                {
+                    text:
+                        "Stay and try to restore the telephone.",
+
+                    next:
+                        8
+                }
+
+            ]
+        },
+
+
+        /* RUNNER PATH */
+
+        {
+            speaker:
+                "Corporal Tan",
+
+            text:
+                "Tan takes the folded message and checks the corridor. The safest route is already blocked.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Corporal Tan",
+
+            text:
+                "If I take the main road, I'll get there faster. The side passage is safer, but it will take longer.",
+
+            choices: [
+
+                {
+                    text:
+                        "Take the main road.",
+
+                    next:
+                        7
+                },
+
+                {
+                    text:
+                        "Take the sheltered side passage.",
+
+                    next:
+                        7
+                }
+
+            ]
+        },
+
+
+        {
+            speaker:
+                "Narrator",
+
+            text:
+                "Tan disappears into the darkness. Minutes later, a distant whistle is heard. The message has reached the position.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Captain Lim",
+
+            text:
+                "We may never know exactly what happened out there. But the order was delivered.",
+
+            choices: null
+        },
+
+
+        /* TELEPHONE PATH */
+
+        {
+            speaker:
+                "Captain Lim",
+
+            text:
+                "You kneel beside the damaged field telephone. The cable has been pulled loose, but the line may still be alive.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Radio Operator",
+
+            text:
+                "Static... wait. I can hear someone. Very faintly.",
+
+            choices: [
+
+                {
+                    text:
+                        "Ask them for their location.",
+
+                    next:
+                        10
+                },
+
+                {
+                    text:
+                        "Tell them to withdraw immediately.",
+
+                    next:
+                        11
+                }
+
+            ]
+        },
+
+
+        {
+            speaker:
+                "Unknown Voice",
+
+            text:
+                "We're near the eastern road. Visibility is almost gone. We've been waiting for instructions.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Captain Lim",
+
+            text:
+                "Tell them to withdraw. Now. We will cover the remaining positions as long as we can.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Radio Operator",
+
+            text:
+                "The signal disappears again. But this time, the message has gone through.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Captain Lim",
+
+            text:
+                "The room falls silent again. For a moment, nobody speaks.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Captain Lim",
+
+            text:
+                "Whatever happens next, someone received the warning.",
+
+            choices: null
+        }
+
+    ]
+
+},
+
+
+/* =====================================================
+   RADIO STATION
+===================================================== */
+
+2: {
+
+    title:
+        "Radio Station",
+
+    left:
+        "Radio Operator",
+
+    right:
+        "Messenger",
+
+    fragment:
+        "APORE",
+
+    story: [
+
+        {
+            speaker:
+                "Radio Operator",
+
+            text:
+                "The clock shows 9:25 PM. The transmitter hums quietly while static fills the room.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Messenger",
+
+            text:
+                "People outside are asking for news. They want to know whether the city is still holding.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Radio Operator",
+
+            text:
+                "We don't know what is happening everywhere. If we broadcast the wrong information, people could panic.",
+
+            choices: [
+
+                {
+                    text:
+                        "Continue broadcasting what is confirmed.",
+
+                    next:
+                        5
+                },
+
+                {
+                    text:
+                        "Stop broadcasting until more information arrives.",
+
+                    next:
+                        7
+                }
+
+            ]
+        },
+
+
+        {
+            speaker:
+                "Radio Operator",
+
+            text:
+                "The microphone clicks on. You carefully repeat only the information that has been confirmed.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Messenger",
+
+            text:
+                "It isn't much, but at least people know someone is still transmitting.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Radio Operator",
+
+            text:
+                "Then the signal suddenly changes. Someone is trying to contact us.",
+
+            choices: [
+
+                {
+                    text:
+                        "Answer the transmission.",
+
+                    next:
+                        9
+                },
+
+                {
+                    text:
+                        "Keep the station silent.",
+
+                    next:
+                        10
+                }
+
+            ]
+        },
+
+
+        {
+            speaker:
+                "Radio Operator",
+
+            text:
+                "The transmitter is switched off. The room becomes strangely quiet.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Messenger",
+
+            text:
+                "Maybe silence is safer. But outside, people will have even fewer answers.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Unknown Voice",
+
+            text:
+                "Station receiving? This is a field unit. We have civilians moving toward the shelter. Can you hear us?",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Radio Operator",
+
+            text:
+                "We hear you. Hold your position and keep the civilians moving toward the marked shelter.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Radio Operator",
+
+            text:
+                "The transmission fades. The room is quiet again, but the operator keeps his hand on the transmitter.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Radio Operator",
+
+            text:
+                "As long as there is someone listening, the station still has a purpose.",
+
+            choices: null
+        }
+
+    ]
+
+},
+
+
+/* =====================================================
+   CIVILIAN SHELTER
+===================================================== */
+
+3: {
+
+    title:
+        "Civilian Shelter",
+
+    left:
+        "Mrs. Lee",
+
+    right:
+        "Volunteer",
+
+    fragment:
+        "HIST",
+
+    story: [
+
+        {
+            speaker:
+                "Mrs. Lee",
+
+            text:
+                "The shelter is crowded. Families sit shoulder to shoulder while the sound of aircraft passes overhead.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Volunteer",
+
+            text:
+                "We have enough water for tonight, but the food supplies are getting low.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Mrs. Lee",
+
+            text:
+                "Someone outside is asking whether there is room for another family.",
+
+            choices: [
+
+                {
+                    text:
+                        "Make space for them.",
+
+                    next:
+                        5
+                },
+
+                {
+                    text:
+                        "Ask them to wait outside until the shelter is checked.",
+
+                    next:
+                        7
+                }
+
+            ]
+        },
+
+
+        {
+            speaker:
+                "Volunteer",
+
+            text:
+                "There is barely enough room, but the families shift closer together. A mother and her children enter.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Mother",
+
+            text:
+                "Thank you. We didn't know where else to go.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Volunteer",
+
+            text:
+                "A child nearby is crying. We have one small container of water left.",
+
+            choices: [
+
+                {
+                    text:
+                        "Give the water to the child.",
+
+                    next:
+                        9
+                },
+
+                {
+                    text:
+                        "Save the water for later.",
+
+                    next:
+                        10
+                }
+
+            ]
+        },
+
+
+        {
+            speaker:
+                "Volunteer",
+
+            text:
+                "The door stays closed. For several minutes, nobody knows whether the people outside have found another shelter.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Mrs. Lee",
+
+            text:
+                "The child takes a small drink. Around the room, people quietly share what little they have.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Volunteer",
+
+            text:
+                "The water is almost gone, but the room is calmer now.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Mrs. Lee",
+
+            text:
+                "Nobody here knows how long this will last. For tonight, the shelter is still standing.",
+
+            choices: null
+        }
+
+    ]
+
+},
+
+
+/* =====================================================
+   BATTLE SITE
+===================================================== */
+
+4: {
+
+    title:
+        "Battle Site",
+
+    left:
+        "Private Ahmad",
+
+    right:
+        "Medic Wong",
+
+    fragment:
+        "ORY",
+
+    story: [
+
+        {
+            speaker:
+                "Private Ahmad",
+
+            text:
+                "The road is almost impossible to recognise. Smoke hangs over the buildings, and the sound of vehicles echoes somewhere nearby.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Medic Wong",
+
+            text:
+                "We have injured people who need to be moved. We cannot stay here much longer.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Private Ahmad",
+
+            text:
+                "There are two routes. The main road is faster. The smaller route takes longer but provides more cover.",
+
+            choices: [
+
+                {
+                    text:
+                        "Take the faster main road.",
+
+                    next:
+                        5
+                },
+
+                {
+                    text:
+                        "Take the sheltered route.",
+
+                    next:
+                        7
+                }
+
+            ]
+        },
+
+
+        {
+            speaker:
+                "Medic Wong",
+
+            text:
+                "The main road is exposed, but every minute matters. We move quickly.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Private Ahmad",
+
+            text:
+                "The sheltered route is slower. Everyone has to move carefully through the damaged buildings.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Medic Wong",
+
+            text:
+                "We have another problem. One of the injured cannot walk.",
+
+            choices: [
+
+                {
+                    text:
+                        "Carry them together.",
+
+                    next:
+                        9
+                },
+
+                {
+                    text:
+                        "Move the others first and return for them.",
+
+                    next:
+                        10
+                }
+
+            ]
+        },
+
+
+        {
+            speaker:
+                "Medic Wong",
+
+            text:
+                "We cannot leave anyone behind if there is another option. Ahmad, help me lift them.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Private Ahmad",
+
+            text:
+                "The group moves slowly, but everyone makes it through the route.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Medic Wong",
+
+            text:
+                "The injured soldier is moved to safety. The route took longer, but the group arrived together.",
+
+            choices: null
+        },
+
+
+        {
+            speaker:
+                "Medic Wong",
+
+            text:
+                "For a moment, the noise around them fades. They have made it through.",
+
+            choices: null
+        }
+
+    ]
+
+}
+
+};
+
+
+/* =====================================================
+   LOAD / SAVE
+===================================================== */
+
+function loadState() {
+
+    const saved =
+        localStorage.getItem(
+            STORAGE_KEY
+        );
+
+    if (saved) {
+
+        try {
+
+            state = {
+                ...state,
+                ...JSON.parse(saved)
+            };
+
+        } catch (e) {
+
+            console.error(e);
+
+        }
+
+    }
+
+    updateUI();
+}
+
+
+function saveState() {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(state)
+    );
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetPrototype() {
+
+    if (
+        !confirm(
+            "Reset all prototype progress?"
+        )
+    ) {
+        return;
+    }
+
+    localStorage.removeItem(
+        STORAGE_KEY
+    );
+
+    location.reload();
+
+}
+
+
+/* =====================================================
+   UPDATE UI
+===================================================== */
+
+function updateUI() {
+
+    document
+        .getElementById("stampCount")
+        .textContent =
+        state.stamps;
+
+    document
+        .getElementById("fragmentCount")
+        .textContent =
+        `${state.fragments.length}/4`;
+
+
+    for (
+        let i = 1;
+        i <= 4;
+        i++
+    ) {
+
+        const site =
+            document.getElementById(
+                `site${i}`
+            );
+
+        const status =
+            document.getElementById(
+                `siteStatus${i}`
+            );
+
+
+        if (
+            state.completedSites.includes(i)
+        ) {
+
+            site.classList.add(
+                "completed"
+            );
+
+            status.textContent =
+                "Completed ✓";
+
+        } else {
+
+            site.classList.remove(
+                "completed"
+            );
+
+            status.textContent =
+                "Unexplored";
+
+        }
+
+    }
+
+
+    document
+        .getElementById("siteStatus6")
+        .textContent =
+        state.passphraseCompleted
+            ? "Unlocked ✓"
+            : "Locked";
+
+
+    updateFragments();
+
+}
+
+
+/* =====================================================
+   FRAGMENTS
+===================================================== */
+
+function updateFragments() {
+
+    const display =
+        document.getElementById(
+            "fragmentDisplay"
+        );
+
+    display.innerHTML = "";
+
+
+    state.fragments.forEach(
+        fragment => {
+
+            const el =
+                document.createElement(
+                    "div"
+                );
+
+            el.className =
+                "fragment";
+
+            el.textContent =
+                fragment;
+
+            display.appendChild(
+                el
+            );
+
+        }
+    );
+
+
+    const area =
+        document.getElementById(
+            "passphraseArea"
+        );
+
+    const lock =
+        document.getElementById(
+            "passphraseLock"
+        );
+
+
+    if (
+        state.fragments.length === 4
+    ) {
+
+        area.classList.remove(
+            "hidden"
+        );
+
+        lock.classList.add(
+            "hidden"
+        );
+
+        buildScramble();
+
+    }
+
+}
+
+
+/* =====================================================
+   STORY STATE
+===================================================== */
+
+let currentSite = null;
+
+let currentDialogue = 0;
+
+let storyHistory = [];
+
+let currentChoiceMade = false;
+
+
+/* =====================================================
+   OPEN SITE
+===================================================== */
+
+function openSite(id) {
+
+    if (id === 6) {
+
+        if (
+            !state.passphraseCompleted
+        ) {
+
+            alert(
+                "Complete and decode the dispatch first."
+            );
+
+            return;
+
+        }
+
+        openMemory();
+
+        return;
+
+    }
+
+
+    currentSite = id;
+
+    currentDialogue = 0;
+
+    storyHistory = [];
+
+    currentChoiceMade = false;
+
+
+    const data =
+        sites[id];
+
+
+    document
+        .getElementById("storyTitle")
+        .textContent =
+        data.title;
+
+
+    document
+        .getElementById("storyModal")
+        .classList.remove(
+            "hidden"
+        );
+
+
+    showDialogue();
+
+}
+
+
+/* =====================================================
+   SHOW DIALOGUE
+===================================================== */
+
+function showDialogue() {
+
+    const data =
+        sites[currentSite];
+
+    const dialogue =
+        data.story[
+            currentDialogue
+        ];
+
+
+    document
+        .getElementById("charLeft")
+        .textContent =
+        data.left;
+
+
+    document
+        .getElementById("charRight")
+        .textContent =
+        data.right;
+
+
+    document
+        .getElementById("speaker")
+        .textContent =
+        dialogue.speaker;
+
+
+    document
+        .getElementById("dialogueText")
+        .textContent =
+        dialogue.text;
+
+
+    const choices =
+        document.getElementById(
+            "storyChoices"
+        );
+
+
+    choices.innerHTML = "";
+
+
+    const nextButton =
+        document.getElementById(
+            "nextDialogue"
+        );
+
+
+    /*
+       If this scene contains choices,
+       hide NEXT until the player chooses.
+    */
+
+    if (
+        dialogue.choices &&
+        dialogue.choices.length
+    ) {
+
+        nextButton.classList.add(
+            "hidden"
+        );
+
+
+        const label =
+            document.createElement(
+                "div"
+            );
+
+        label.className =
+            "choice-label";
+
+        label.textContent =
+            "WHAT DO YOU DO?";
+
+        choices.appendChild(
+            label
+        );
+
+
+        dialogue.choices.forEach(
+            (choice, index) => {
+
+                const button =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                button.className =
+                    "story-choice";
+
+
+                button.textContent =
+                    choice.text;
+
+
+                button.onclick =
+                    () => chooseStory(
+                        choice,
+                        button
+                    );
+
+
+                choices.appendChild(
+                    button
+                );
+
+            }
+        );
+
+
+        currentChoiceMade = false;
+
+    }
+
+    else {
+
+        nextButton.classList.remove(
+            "hidden"
+        );
+
+
+        if (
+            currentDialogue ===
+            data.story.length - 1
+        ) {
+
+            nextButton.textContent =
+                "FINISH STORY";
+
+        } else {
+
+            nextButton.textContent =
+                "NEXT";
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   CHOICE
+===================================================== */
+
+function chooseStory(
+    choice,
+    clickedButton
+) {
+
+    if (
+        currentChoiceMade
+    ) {
+        return;
+    }
+
+
+    currentChoiceMade = true;
+
+
+    const allChoices =
+        document.querySelectorAll(
+            ".story-choice"
+        );
+
+
+    allChoices.forEach(
+        button => {
+
+            button.disabled = true;
+
+        }
+    );
+
+
+    clickedButton.style.borderColor =
+        "#c5a25e";
+
+
+    clickedButton.style.background =
+        "#4a3d27";
+
+
+    const record =
+        document.createElement(
+            "div"
+        );
+
+
+    record.className =
+        "decision-recorded";
+
+
+    record.innerHTML =
+        "DECISION RECORDED — your choice affects the next scene.";
+
+
+    document
+        .getElementById(
+            "storyChoices"
+        )
+        .appendChild(
+            record
+        );
+
+
+    storyHistory.push({
+        scene:
+            currentDialogue,
+
+        choice:
+            choice.text
+    });
+
+
+    setTimeout(
+        () => {
+
+            currentDialogue =
+                choice.next;
+
+            currentChoiceMade =
+                false;
+
+            showDialogue();
+
+        },
+        700
+    );
+
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+function nextStory() {
+
+    const data =
+        sites[currentSite];
+
+
+    if (
+        currentDialogue <
+        data.story.length - 1
+    ) {
+
+        currentDialogue++;
+
+        showDialogue();
+
+        return;
+
+    }
+
+
+    finishSite();
+
+}
+
+
+/* =====================================================
+   FINISH SITE
+===================================================== */
+
+function finishSite() {
+
+    const firstCompletion =
+        !state.completedSites.includes(
+            currentSite
+        );
+
+
+    if (firstCompletion) {
+
+        state.completedSites.push(
+            currentSite
+        );
+
+
+        state.stamps += 1;
+
+
+        const fragment =
+            sites[currentSite].fragment;
+
+
+        if (
+            !state.fragments.includes(
+                fragment
+            )
+        ) {
+
+            state.fragments.push(
+                fragment
+            );
+
+        }
+
+
+        saveState();
+
+        updateUI();
+
+    }
+
+
+    showCompletionScreen(
+        firstCompletion
+    );
+
+}
+
+
+/* =====================================================
+   COMPLETION SCREEN
+===================================================== */
+
+function showCompletionScreen(
+    firstCompletion
+) {
+
+    const siteName =
+        sites[currentSite].title;
+
+
+    const fragment =
+        sites[currentSite].fragment;
+
+
+    const container =
+        document.getElementById(
+            "storyContainer"
+        );
+
+
+    container.innerHTML = `
+
+        <div class="completion-screen">
+
+            <div class="completion-icon">
+                ✓
+            </div>
+
+            <h2>
+                ${siteName} — Story Complete
+            </h2>
+
+            <p style="color:#999;">
+                ${
+                    firstCompletion
+                    ? "You have recovered a new piece of the dispatch."
+                    : "You have already completed this story."
+                }
+            </p>
+
+
+            ${
+                firstCompletion
+                ? `
+                    <div class="reward-row">
+
+                        <div class="reward">
+                            🏅 +1 STAMP
+                        </div>
+
+                        <div class="reward">
+                            🧩 +1 FRAGMENT
+                            <br>
+                            ${fragment}
+                        </div>
+
+                    </div>
+                `
+                : `
+                    <div class="reward-row">
+
+                        <div class="reward">
+                            ✓ SITE ALREADY COMPLETED
+                        </div>
+
+                    </div>
+                `
+            }
+
+
+            <div class="completion-options">
+
+                <button
+                    class="primary"
+                    onclick="continueToMap()">
+
+                    CONTINUE TO OTHER SITES
+
+                </button>
+
+
+                <button
+                    class="secondary"
+                    onclick="stayAndExplore()">
+
+                    STAY & EXPLORE
+
+                </button>
+
+
+                <button
+                    class="secondary"
+                    onclick="replayStory()">
+
+                    REPLAY STORY
+
+                </button>
+
+
+                <button
+                    class="secondary"
+                    onclick="closeStory()">
+
+                    BACK TO MAP
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   CONTINUE
+===================================================== */
+
+function continueToMap() {
+
+    closeStory();
+
+}
+
+
+/* =====================================================
+   STAY & EXPLORE
+===================================================== */
+
+function stayAndExplore() {
+
+    const siteName =
+        sites[currentSite].title;
+
+
+    const container =
+        document.getElementById(
+            "storyContainer"
+        );
+
+
+    container.innerHTML = `
+
+        <div class="explore-screen">
+
+            <h2>
+                Explore — ${siteName}
+            </h2>
+
+            <p class="explore-description">
+
+                You have completed the story.
+                Take a moment to explore the
+                physical heritage site.
+
+            </p>
+
+
+            <div class="temp-image">
+
+                <div>
+
+                    <strong>
+                        TEMPORARY IMAGE HOLDER
+                    </strong>
+
+                    <span>
+                        Replace this later with a
+                        photograph / 3D reconstruction /
+                        AR scene.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <p class="explore-description">
+
+                Future version:
+                this section can contain historical
+                photographs, an AR overlay, audio
+                clips, artefacts, maps or additional
+                environmental information.
+
+            </p>
+
+
+            <div class="completion-options">
+
+                <button
+                    class="secondary"
+                    onclick="replayStory()">
+
+                    REPLAY STORY
+
+                </button>
+
+
+                <button
+                    class="primary"
+                    onclick="continueToMap()">
+
+                    CONTINUE TO OTHER SITES
+
+                </button>
+
+
+                <button
+                    class="secondary"
+                    onclick="closeStory()">
+
+                    BACK TO MAP
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   REPLAY
+===================================================== */
+
+function replayStory() {
+
+    currentDialogue = 0;
+
+    storyHistory = [];
+
+    currentChoiceMade = false;
+
+
+    restoreStoryInterface();
+
+
+    showDialogue();
+
+}
+
+
+/* =====================================================
+   RESTORE STORY INTERFACE
+===================================================== */
+
+function restoreStoryInterface() {
+
+    const data =
+        sites[currentSite];
+
+
+    const container =
+        document.getElementById(
+            "storyContainer"
+        );
+
+
+    container.innerHTML = `
+
+        <div class="vn-background">
+
+            <div class="vn-era">
+                SINGAPORE — 1942
+            </div>
+
+
+            <div class="character left">
+
+                <div class="character-silhouette">
+                </div>
+
+                <div
+                    class="character-name"
+                    id="charLeft">
+
+                    ${data.left}
+
+                </div>
+
+            </div>
+
+
+            <div class="character right">
+
+                <div class="character-silhouette">
+                </div>
+
+                <div
+                    class="character-name"
+                    id="charRight">
+
+                    ${data.right}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="dialogue">
+
+            <div
+                class="speaker"
+                id="speaker">
+            </div>
+
+
+            <div
+                class="dialogue-text"
+                id="dialogueText">
+            </div>
+
+
+            <div
+                id="storyChoices"
+                class="choice-container">
+            </div>
+
+
+            <div class="vn-controls">
+
+                <button
+                    class="secondary"
+                    onclick="closeStory()">
+
+                    BACK TO MAP
+
+                </button>
+
+
+                <button
+                    class="primary"
+                    id="nextDialogue"
+                    onclick="nextStory()">
+
+                    NEXT
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   CLOSE STORY
+===================================================== */
+
+function closeStory() {
+
+    document
+        .getElementById(
+            "storyModal"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+
+    restoreStoryInterface();
+
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+const quizQuestions = [
+
+    {
+        question:
+            "Singapore fell to Japanese forces in February 1942.",
+
+        answer:
+            true
+    },
+
+    {
+        question:
+            "The Japanese occupation of Singapore lasted until 1945.",
+
+        answer:
+            true
+    },
+
+    {
+        question:
+            "The Fall of Singapore occurred after the end of World War II.",
+
+        answer:
+            false
+    }
+
+];
+
+
+let quizIndex = 0;
+
+
+function openQuiz() {
+
+    quizIndex = 0;
+
+    document
+        .getElementById(
+            "quizModal"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+    showQuizQuestion();
+
+}
+
+
+function showQuizQuestion() {
+
+    const container =
+        document.getElementById(
+            "quizContent"
+        );
+
+
+    if (
+        quizIndex >=
+        quizQuestions.length
+    ) {
+
+        container.innerHTML = `
+
+            <h2>
+                Quiz Complete
+            </h2>
+
+            <p>
+                You have completed the
+                history challenge.
+            </p>
+
+            <button
+                class="primary"
+                onclick="closeQuiz()">
+
+                BACK TO MAP
+
+            </button>
+
+        `;
+
+        return;
+
+    }
+
+
+    const q =
+        quizQuestions[
+            quizIndex
+        ];
+
+
+    container.innerHTML = `
+
+        <h2>
+            Question ${quizIndex + 1}
+            /
+            ${quizQuestions.length}
+        </h2>
+
+        <p>
+            ${q.question}
+        </p>
+
+
+        <button
+            class="choice"
+            onclick="answerQuiz(true)">
+
+            TRUE
+
+        </button>
+
+
+        <button
+            class="choice"
+            onclick="answerQuiz(false)">
+
+            FALSE
+
+        </button>
+
+
+        <p id="quizFeedback"></p>
+
+    `;
+
+}
+
+
+function answerQuiz(answer) {
+
+    const correct =
+        answer ===
+        quizQuestions[
+            quizIndex
+        ].answer;
+
+
+    const feedback =
+        document.getElementById(
+            "quizFeedback"
+        );
+
+
+    if (correct) {
+
+        state.stamps += 2;
+
+        feedback.textContent =
+            "Correct! +2 stamps.";
+
+        saveState();
+
+        updateUI();
+
+    } else {
+
+        feedback.textContent =
+            "Incorrect. No stamps awarded.";
+
+    }
+
+
+    setTimeout(
+        () => {
+
+            quizIndex++;
+
+            showQuizQuestion();
+
+        },
+        900
+    );
+
+}
+
+
+function closeQuiz() {
+
+    document
+        .getElementById(
+            "quizModal"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+}
+
+
+/* =====================================================
+   PASSPHRASE
+===================================================== */
+
+let selectedFragments = [];
+
+
+function buildScramble() {
+
+    const container =
+        document.getElementById(
+            "scramblePieces"
+        );
+
+
+    container.innerHTML = "";
+
+    selectedFragments = [];
+
+
+    const shuffled =
+        [...state.fragments]
+            .sort(
+                () =>
+                    Math.random() - .5
+            );
+
+
+    shuffled.forEach(
+        fragment => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "scramble-piece";
+
+
+            button.textContent =
+                fragment;
+
+
+            button.onclick =
+                () => {
+
+                    const index =
+                        selectedFragments
+                            .indexOf(
+                                fragment
+                            );
+
+
+                    if (
+                        index !== -1
+                    ) {
+
+                        selectedFragments
+                            .splice(
+                                index,
+                                1
+                            );
+
+                        button.classList
+                            .remove(
+                                "selected"
+                            );
+
+                    } else {
+
+                        selectedFragments
+                            .push(
+                                fragment
+                            );
+
+                        button.classList
+                            .add(
+                                "selected"
+                            );
+
+                    }
+
+
+                    updateAnswerBox();
+
+                };
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    updateAnswerBox();
+
+}
+
+
+function updateAnswerBox() {
+
+    document
+        .getElementById(
+            "answerBox"
+        )
+        .textContent =
+
+        selectedFragments.length
+
+        ? selectedFragments.join(" ")
+
+        : "Click fragments in order.";
+
+}
+
+
+function checkPassphrase() {
+
+    const answer =
+        selectedFragments
+            .join("")
+            .toUpperCase();
+
+
+    const result =
+        document.getElementById(
+            "passphraseResult"
+        );
+
+
+    if (
+        answer ===
+        "SINGAPOREHISTORY"
+    ) {
+
+        state.passphraseCompleted =
+            true;
+
+
+        saveState();
+
+        updateUI();
+
+
+        result.innerHTML = `
+
+            <strong
+                style="color:#dfbd6a">
+
+                DISPATCH DECODED ✓
+
+            </strong>
+
+            <br><br>
+
+            The final dispatch has been
+            reconstructed.
+
+            <br><br>
+
+            <button
+                class="primary"
+                onclick="openMemory()">
+
+                ENTER MEMORY WALL
+
+            </button>
+
+        `;
+
+    } else {
+
+        result.textContent =
+            "The order is incorrect. Try again.";
+
+    }
+
+}
+
+
+/* =====================================================
+   MEMORY WALL
+===================================================== */
+
+function openMemory() {
+
+    if (
+        !state.passphraseCompleted
+    ) {
+
+        alert(
+            "Decode the dispatch first."
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById(
+            "memoryModal"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+
+    renderMemories();
+
+}
+
+
+function closeMemory() {
+
+    document
+        .getElementById(
+            "memoryModal"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+}
+
+
+function submitMemory() {
+
+    const input =
+        document.getElementById(
+            "memoryInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+
+        alert(
+            "Please write something first."
+        );
+
+        return;
+
+    }
+
+
+    state.memories.push({
+
+        text:
+            text,
+
+        date:
+            new Date()
+                .toLocaleDateString()
+
+    });
+
+
+    saveState();
+
+
+    input.value = "";
+
+
+    renderMemories();
+
+}
+
+
+function renderMemories() {
+
+    const container =
+        document.getElementById(
+            "memories"
+        );
+
+
+    const constellation =
+        document.getElementById(
+            "constellation"
+        );
+
+
+    container.innerHTML = "";
+
+    constellation.innerHTML = "";
+
+
+    state.memories.forEach(
+        (memory, index) => {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "memory";
+
+
+            div.innerHTML = `
+
+                <strong>
+                    Memory ${index + 1}
+                </strong>
+
+                <br>
+
+                ${escapeHTML(
+                    memory.text
+                )}
+
+                <br>
+
+                <small>
+                    ${memory.date}
+                </small>
+
+            `;
+
+
+            container.appendChild(
+                div
+            );
+
+
+            const star =
+                document.createElement(
+                    "div"
+                );
+
+
+            star.className =
+                "star";
+
+
+            star.style.left =
+                `${
+                    10 +
+                    Math.random() * 80
+                }%`;
+
+
+            star.style.top =
+                `${
+                    10 +
+                    Math.random() * 70
+                }%`;
+
+
+            constellation.appendChild(
+                star
+            );
+
+        }
+    );
+
+}
+
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadState();
+
+</script>
+
+</body>
+</html>
