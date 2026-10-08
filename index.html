@@ -201,17 +201,10 @@
     <div class="rewards-heading">
         <div>
             <h2 id="rewardsHeading">Stamp Exchange</h2>
-            <p>Redemptions are available in person at the event booth only.</p>
         </div>
-        <label class="booth-check">
-            <input id="atBooth" type="checkbox" onchange="updateUI()">
-            I am at the redemption booth
-        </label>
     </div>
 
-    <p id="redeemStatus" class="redeem-status" role="status" aria-live="polite">
-        Select the checkbox when you are at the booth to enable redemption.
-    </p>
+    <p id="redeemStatus" class="redeem-status" role="status" aria-live="polite"></p>
 
     <div class="rewards-grid">
         <article class="reward-card">
@@ -482,6 +475,8 @@
                         ADD TO MEMORY WALL
 
                     </button>
+
+                    <p id="memoryStatus" role="status" aria-live="polite"></p>
 
                     <div
                         id="memories">

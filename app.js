@@ -16,10 +16,13 @@ let state = {
     quizAttempted: false,
 
     quizCorrect: 0,
+    quizIndex: 0,
+    quizComplete: false,
 
     redemptions: [],
 
-    memories: []
+    memories: [],
+    memoryUserId: null
 
 };
 
@@ -1025,6 +1028,11 @@ function loadState() {
 
     }
 
+    if (!state.memoryUserId) {
+        state.memoryUserId = crypto.randomUUID();
+        saveState();
+    }
+
     updateUI();
 }
 
@@ -1141,7 +1149,18 @@ function updateUI() {
         .textContent =
         state.quizAttempted
             ? "Attempt used"
-            : "+2 stamps / correct · once only";
+            : state.quizIndex > 0
+                ? "In progress · resume"
+                : "+2 stamps / correct · once only";
+
+    document
+        .querySelector("#site5 button")
+        .textContent =
+        state.quizAttempted
+            ? "VIEW QUIZ SCORE"
+            : state.quizIndex > 0
+                ? "RESUME QUIZ"
+                : "START QUIZ";
 
 
     updateFragments();
@@ -1160,15 +1179,6 @@ const rewards = {
 
 
 function renderRewardsShop() {
-    const atBooth =
-        document.getElementById("atBooth").checked;
-
-    document
-        .querySelectorAll(".redeem-button")
-        .forEach(button => {
-            button.disabled = !atBooth;
-        });
-
     Object.keys(rewards).forEach(id => {
         const redeemedCount =
             state.redemptions.filter(item => item === id).length;
@@ -1178,11 +1188,6 @@ function renderRewardsShop() {
             .textContent = `${redeemedCount} redeemed`;
     });
 
-    if (!atBooth) {
-        document
-            .getElementById("redeemStatus")
-            .textContent = "Redemptions are available in person at the event booth only.";
-    }
 }
 
 
@@ -1190,13 +1195,6 @@ function redeemReward(id) {
     const reward = rewards[id];
 
     if (!reward) {
-        return;
-    }
-
-    if (!document.getElementById("atBooth").checked) {
-        document
-            .getElementById("redeemStatus")
-            .textContent = "You must be physically at the event booth to redeem a reward.";
         return;
     }
 
@@ -1208,7 +1206,7 @@ function redeemReward(id) {
     }
 
     const confirmed = confirm(
-        `Booth redemption only. Redeem ${reward.name} for ${reward.cost} stamps? Your stamps will be deducted now.`
+        `Redeem ${reward.name} for ${reward.cost} stamps? Your stamps will be deducted now.`
     );
 
     if (!confirmed) {
@@ -1222,7 +1220,7 @@ function redeemReward(id) {
 
     document
         .getElementById("redeemStatus")
-        .textContent = `${reward.name} redeemed at the booth. ${reward.cost} stamps deducted. You may redeem this item again while you have enough stamps.`;
+        .textContent = `${reward.name} redeemed. ${reward.cost} stamps deducted.`;
 }
 
 
@@ -2184,16 +2182,18 @@ const quizQuestions = [
 let quizIndex = 0;
 
 let answeredCurrentQuestion = false;
+let quizAdvanceTimer = null;
 
 
 function openQuiz() {
 
-    quizIndex = 0;
+    clearTimeout(quizAdvanceTimer);
+    quizIndex = state.quizIndex;
 
     const container =
         document.getElementById("quizContent");
 
-    if (state.quizAttempted) {
+    if (state.quizAttempted || state.quizComplete) {
         container.innerHTML = `
             <h2>Quiz attempt used</h2>
             <p>You have already taken your one quiz attempt.</p>
@@ -2206,11 +2206,6 @@ function openQuiz() {
             .classList.remove("hidden");
         return;
     }
-
-    state.quizAttempted = true;
-    state.quizCorrect = 0;
-    saveState();
-    updateUI();
 
     document
         .getElementById(
@@ -2238,7 +2233,10 @@ function showQuizQuestion() {
         quizQuestions.length
     ) {
 
+        state.quizAttempted = true;
+        state.quizComplete = true;
         saveState();
+        updateUI();
 
         container.innerHTML = `
 
@@ -2358,15 +2356,18 @@ function answerQuiz(answer) {
 
     }
 
+    state.quizIndex = quizIndex + 1;
     saveState();
 
 
-    setTimeout(
+    quizAdvanceTimer = setTimeout(
         () => {
 
-            quizIndex++;
+            quizIndex = state.quizIndex;
 
-            showQuizQuestion();
+            if (!document.getElementById("quizModal").classList.contains("hidden")) {
+                showQuizQuestion();
+            }
 
         },
         900
@@ -2376,6 +2377,8 @@ function answerQuiz(answer) {
 
 
 function closeQuiz() {
+
+    clearTimeout(quizAdvanceTimer);
 
     document
         .getElementById(
@@ -2629,6 +2632,10 @@ function submitMemory() {
     const text =
         input.value.trim();
 
+    if (state.memories.some(memory => memory.userId === state.memoryUserId)) {
+        return;
+    }
+
 
     if (!text) {
 
@@ -2645,6 +2652,9 @@ function submitMemory() {
 
         text:
             text,
+
+        userId:
+            state.memoryUserId,
 
         date:
             new Date()
@@ -2681,6 +2691,15 @@ function renderMemories() {
     container.innerHTML = "";
 
     constellation.innerHTML = "";
+
+    const hasPostedMemory = state.memories.some(
+        memory => memory.userId === state.memoryUserId
+    );
+    document.getElementById("memoryInput").disabled = hasPostedMemory;
+    document.querySelector(".memory-form .primary").disabled = hasPostedMemory;
+    document.getElementById("memoryStatus").textContent = hasPostedMemory
+        ? "You have already added a memory."
+        : "";
 
 
     state.memories.forEach(

@@ -924,21 +924,6 @@ main {
     line-height: 1.5;
 }
 
-.booth-check {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #e4d8bd;
-    font-size: 13px;
-    white-space: nowrap;
-}
-
-.booth-check input {
-    width: 17px;
-    height: 17px;
-    accent-color: #b18d50;
-}
-
 .redeem-status {
     min-height: 20px;
     color: #d8bd7a;
@@ -1195,11 +1180,8 @@ main {
     .rewards-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
-    .booth-check {
-        white-space: normal;
-    }
 }
+
 
 /* =====================================================
    SIMPLE VR PROJECT DEMO
@@ -1522,18 +1504,6 @@ main {
         linear-gradient(140deg, #122a32, #081218);
 }
 
-.modal[data-experience="sensory"] .vn-background::after {
-    position: absolute;
-    top: 44%;
-    left: 28%;
-    width: 44%;
-    height: 2px;
-    background: var(--vr-cyan);
-    box-shadow: 12px -12px 0 -0.5px var(--vr-cyan), 24px 8px 0 -0.5px var(--vr-cyan), 36px -20px 0 -0.5px var(--vr-cyan), 48px 5px 0 -0.5px var(--vr-cyan), 60px -9px 0 -0.5px var(--vr-cyan), 72px 12px 0 -0.5px var(--vr-cyan), 0 0 12px var(--vr-cyan);
-    content: "";
-    opacity: .65;
-}
-
 .modal[data-experience="hologram"] .vn-background {
     background:
         radial-gradient(ellipse at 50% 90%, rgba(82, 219, 211, .2), transparent 48%),
@@ -1545,15 +1515,15 @@ main {
     left: calc(50% - 110px);
 }
 
-.modal[data-experience="hologram"] .character.right { opacity: .2; }
+.modal[data-experience="hologram"] .character.right { opacity: 1; }
 
-.modal[data-experience="hologram"] .character.left .character-silhouette {
+.modal[data-experience="hologram"] .character .character-silhouette {
     border-color: rgba(142, 247, 237, .85);
     background: repeating-linear-gradient(0deg, rgba(129, 232, 226, .65) 0 1px, rgba(32, 103, 111, .55) 2px 5px);
     box-shadow: 0 0 20px rgba(94, 226, 218, .48), inset 0 0 24px rgba(94, 226, 218, .25);
 }
 
-.modal[data-experience="hologram"] .character.left .character-silhouette::before {
+.modal[data-experience="hologram"] .character .character-silhouette::before {
     border-color: rgba(158, 255, 241, .9);
     background: rgba(91, 194, 190, .65);
     box-shadow: 0 0 18px rgba(94, 226, 218, .75);
