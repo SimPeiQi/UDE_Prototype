@@ -67,6 +67,8 @@
             Complete the dispatch.
         </p>
 
+        <p id="progressLine" class="progress-line" role="status" aria-live="polite"></p>
+
     </div>
 
 
@@ -100,8 +102,11 @@
             class="site s1"
             id="site1">
 
+            <span class="site-num" aria-hidden="true">1</span>
+
             <button
                 class="site-button"
+                aria-label="Fort Canning, stop 1 of 4"
                 onclick="openSite(1)">
 
                 ✦
@@ -129,8 +134,11 @@
             class="site s2"
             id="site2">
 
+            <span class="site-num" aria-hidden="true">2</span>
+
             <button
                 class="site-button"
+                aria-label="Flagstaff, stop 2 of 4"
                 onclick="openSite(2)">
 
                 ◉
@@ -158,8 +166,11 @@
             class="site s3"
             id="site3">
 
+            <span class="site-num" aria-hidden="true">3</span>
+
             <button
                 class="site-button"
+                aria-label="Lighthouse, stop 3 of 4"
                 onclick="openSite(3)">
 
                 ▣
@@ -187,8 +198,11 @@
             class="site s4"
             id="site4">
 
+            <span class="site-num" aria-hidden="true">4</span>
+
             <button
                 class="site-button"
+                aria-label="Underground Bunker, stop 4 of 4"
                 onclick="openSite(4)">
 
                 ◆
@@ -218,6 +232,7 @@
 
             <button
                 class="site-button"
+                aria-label="History quiz"
                 onclick="openQuiz()">
 
                 ?
@@ -243,6 +258,7 @@
 
             <button
                 class="site-button"
+                aria-label="Memory Hub"
                 onclick="openSite(6)">
 
                 ✚
@@ -346,7 +362,7 @@
             <p>
                 Your fragments have been recovered.
                 Arrange them to reconstruct the
-                daily passphrase.
+                daily passphrase. Hint: follow the trail in order.
             </p>
 
             <div
@@ -394,7 +410,7 @@
     </div>
 
     <p id="redeemStatus" class="redeem-status" role="status" aria-live="polite">
-        Select the checkbox when you are at the booth to enable redemption.
+        Tick the box above when you are at the booth to enable redemption.
     </p>
 
     <div class="rewards-grid">

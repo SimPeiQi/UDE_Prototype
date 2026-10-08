@@ -495,6 +495,8 @@ main {
     background: transparent;
     color: #999;
     font-size: 27px;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .close:hover {
@@ -570,6 +572,7 @@ main {
 }
 
 .character-silhouette {
+    opacity: .88;
     width: 120px;
     height: 190px;
 
@@ -869,14 +872,14 @@ main {
 
 .story-source {
     margin-top: 15px;
-    color: #9f9276;
-    font-size: 11px;
+    color: #b4a789;
+    font-size: 12.5px;
     line-height: 1.5;
     overflow-wrap: anywhere;
 }
 
 .story-source a {
-    color: #d8bd7a;
+    color: #e6cd8c;
 }
 
 .story-source a:hover {
@@ -1001,7 +1004,25 @@ main {
 
 .redeem-button:disabled {
     cursor: not-allowed;
-    opacity: .45;
+    background: #2a2a2a;
+    color: #777;
+    border-color: #444;
+}
+
+.redeem-button.affordable:not(:disabled) {
+    box-shadow: 0 0 0 1px #d7b45f;
+}
+
+.reward-need {
+    margin: 8px 0 0;
+    min-height: 15px;
+    font-size: 11px;
+    color: #a89b7c;
+    text-align: center;
+}
+
+.reward-need.ready {
+    color: #e0c47c;
 }
 
 /* =====================================================
@@ -1129,6 +1150,61 @@ main {
 }
 
 /* =====================================================
+   TRAIL PROGRESS + NUMBERED STOPS
+===================================================== */
+
+.progress-line {
+    margin: 12px 0 0;
+    color: #e0c47c;
+    font-size: 14px;
+    letter-spacing: .5px;
+}
+
+.site-num {
+    position: absolute;
+    top: -6px;
+    left: calc(50% + 16px);
+    z-index: 2;
+    width: 22px;
+    height: 22px;
+    line-height: 20px;
+    border-radius: 50%;
+    background: #c39b52;
+    color: #1b1b1b;
+    font-size: 12px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.site.completed .site-num {
+    background: #e7d4a3;
+}
+
+.site.next .site-button {
+    animation: nextPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes nextPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(215,180,95,.55); }
+    50%      { box-shadow: 0 0 0 12px rgba(215,180,95,0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site.next .site-button { animation: none; box-shadow: 0 0 14px rgba(215,180,95,.6); }
+}
+
+.site-button:focus-visible,
+.close:focus-visible,
+.story-choice:focus-visible,
+.primary:focus-visible,
+.secondary:focus-visible,
+.scramble-piece:focus-visible,
+.choice:focus-visible {
+    outline: 3px solid #f1d48c;
+    outline-offset: 2px;
+}
+
+/* =====================================================
    RESPONSIVE
 ===================================================== */
 
@@ -1151,6 +1227,20 @@ main {
         height: 520px;
     }
 
+    .map-title {
+        top: 10px;
+        left: 10px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .s1 { left: 22%; top: 42%; }
+    .s2 { left: 50%; top: 30%; }
+    .s3 { left: 76%; top: 46%; }
+    .s4 { left: 28%; top: 70%; }
+    .s5 { left: 68%; top: 66%; }
+    .s6 { left: 80%; top: 86%; }
+
     .site {
         transform:
             translate(-50%, -50%)
@@ -1171,11 +1261,29 @@ main {
     }
 
     .vn-background {
-        height: 270px;
+        height: 190px;
+    }
+
+    .dialogue {
+        min-height: 0;
+        padding: 16px;
+    }
+
+    .dialogue-text {
+        font-size: 16px;
+    }
+
+    .modal {
+        padding: 8px;
+    }
+
+    .modal-content {
+        padding: 12px;
     }
 
     .character {
-        transform: scale(.75);
+        transform: scale(.55);
+        transform-origin: bottom center;
     }
 
     .character.left {

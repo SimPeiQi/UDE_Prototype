@@ -44,798 +44,16 @@ let state = {
 
 ===================================================== */
 
-const sites = {
-
-
-/* =====================================================
-   FORT CANNING
-===================================================== */
-
-1: {
-
-    title:
-        "Fort Canning",
-
-    left:
-        "Captain Lim",
-
-    right:
-        "Corporal Tan",
-
-    fragment:
-        "SING",
-
-    story: [
-
-        {
-            speaker:
-                "Captain Lim",
-
-            text:
-                "8:10 PM. The command room is dim. A telephone rings somewhere beyond the corridor, but nobody moves to answer it. Outside, artillery can be heard in the distance.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Corporal Tan",
-
-            text:
-                "Captain, the eastern position has stopped responding. We haven't heard anything for nearly twenty minutes.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Captain Lim",
-
-            text:
-                "Then we have a problem. The withdrawal order has not reached them.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Captain Lim",
-
-            text:
-                "There are two ways to reach them. We can send someone across the compound, or we can try to restore the field telephone.",
-
-            choices: [
-
-                {
-                    text:
-                        "Send Corporal Tan with the message.",
-
-                    next:
-                        5
-                },
-
-                {
-                    text:
-                        "Stay and try to restore the telephone.",
-
-                    next:
-                        8
-                }
-
-            ]
-        },
-
-
-        /* RUNNER PATH */
-
-        {
-            speaker:
-                "Corporal Tan",
-
-            text:
-                "Tan takes the folded message and checks the corridor. The safest route is already blocked.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Corporal Tan",
-
-            text:
-                "If I take the main road, I'll get there faster. The side passage is safer, but it will take longer.",
-
-            choices: [
-
-                {
-                    text:
-                        "Take the main road.",
-
-                    next:
-                        7
-                },
-
-                {
-                    text:
-                        "Take the sheltered side passage.",
-
-                    next:
-                        7
-                }
-
-            ]
-        },
-
-
-        {
-            speaker:
-                "Narrator",
-
-            text:
-                "Tan disappears into the darkness. Minutes later, a distant whistle is heard. The message has reached the position.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Captain Lim",
-
-            text:
-                "We may never know exactly what happened out there. But the order was delivered.",
-
-            choices: null
-        },
-
-
-        /* TELEPHONE PATH */
-
-        {
-            speaker:
-                "Captain Lim",
-
-            text:
-                "You kneel beside the damaged field telephone. The cable has been pulled loose, but the line may still be alive.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Radio Operator",
-
-            text:
-                "Static... wait. I can hear someone. Very faintly.",
-
-            choices: [
-
-                {
-                    text:
-                        "Ask them for their location.",
-
-                    next:
-                        10
-                },
-
-                {
-                    text:
-                        "Tell them to withdraw immediately.",
-
-                    next:
-                        11
-                }
-
-            ]
-        },
-
-
-        {
-            speaker:
-                "Unknown Voice",
-
-            text:
-                "We're near the eastern road. Visibility is almost gone. We've been waiting for instructions.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Captain Lim",
-
-            text:
-                "Tell them to withdraw. Now. We will cover the remaining positions as long as we can.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Radio Operator",
-
-            text:
-                "The signal disappears again. But this time, the message has gone through.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Captain Lim",
-
-            text:
-                "The room falls silent again. For a moment, nobody speaks.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Captain Lim",
-
-            text:
-                "Whatever happens next, someone received the warning.",
-
-            choices: null
-        }
-
-    ]
-
-},
-
-
-/* =====================================================
-   RADIO STATION
-===================================================== */
-
-2: {
-
-    title:
-        "Radio Station",
-
-    left:
-        "Radio Operator",
-
-    right:
-        "Messenger",
-
-    fragment:
-        "APORE",
-
-    story: [
-
-        {
-            speaker:
-                "Radio Operator",
-
-            text:
-                "The clock shows 9:25 PM. The transmitter hums quietly while static fills the room.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Messenger",
-
-            text:
-                "People outside are asking for news. They want to know whether the city is still holding.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Radio Operator",
-
-            text:
-                "We don't know what is happening everywhere. If we broadcast the wrong information, people could panic.",
-
-            choices: [
-
-                {
-                    text:
-                        "Continue broadcasting what is confirmed.",
-
-                    next:
-                        5
-                },
-
-                {
-                    text:
-                        "Stop broadcasting until more information arrives.",
-
-                    next:
-                        7
-                }
-
-            ]
-        },
-
-
-        {
-            speaker:
-                "Radio Operator",
-
-            text:
-                "The microphone clicks on. You carefully repeat only the information that has been confirmed.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Messenger",
-
-            text:
-                "It isn't much, but at least people know someone is still transmitting.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Radio Operator",
-
-            text:
-                "Then the signal suddenly changes. Someone is trying to contact us.",
-
-            choices: [
-
-                {
-                    text:
-                        "Answer the transmission.",
-
-                    next:
-                        9
-                },
-
-                {
-                    text:
-                        "Keep the station silent.",
-
-                    next:
-                        10
-                }
-
-            ]
-        },
-
-
-        {
-            speaker:
-                "Radio Operator",
-
-            text:
-                "The transmitter is switched off. The room becomes strangely quiet.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Messenger",
-
-            text:
-                "Maybe silence is safer. But outside, people will have even fewer answers.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Unknown Voice",
-
-            text:
-                "Station receiving? This is a field unit. We have civilians moving toward the shelter. Can you hear us?",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Radio Operator",
-
-            text:
-                "We hear you. Hold your position and keep the civilians moving toward the marked shelter.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Radio Operator",
-
-            text:
-                "The transmission fades. The room is quiet again, but the operator keeps his hand on the transmitter.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Radio Operator",
-
-            text:
-                "As long as there is someone listening, the station still has a purpose.",
-
-            choices: null
-        }
-
-    ]
-
-},
-
-
-/* =====================================================
-   CIVILIAN SHELTER
-===================================================== */
-
-3: {
-
-    title:
-        "Civilian Shelter",
-
-    left:
-        "Mrs. Lee",
-
-    right:
-        "Volunteer",
-
-    fragment:
-        "HIST",
-
-    story: [
-
-        {
-            speaker:
-                "Mrs. Lee",
-
-            text:
-                "The shelter is crowded. Families sit shoulder to shoulder while the sound of aircraft passes overhead.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Volunteer",
-
-            text:
-                "We have enough water for tonight, but the food supplies are getting low.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Mrs. Lee",
-
-            text:
-                "Someone outside is asking whether there is room for another family.",
-
-            choices: [
-
-                {
-                    text:
-                        "Make space for them.",
-
-                    next:
-                        5
-                },
-
-                {
-                    text:
-                        "Ask them to wait outside until the shelter is checked.",
-
-                    next:
-                        7
-                }
-
-            ]
-        },
-
-
-        {
-            speaker:
-                "Volunteer",
-
-            text:
-                "There is barely enough room, but the families shift closer together. A mother and her children enter.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Mother",
-
-            text:
-                "Thank you. We didn't know where else to go.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Volunteer",
-
-            text:
-                "A child nearby is crying. We have one small container of water left.",
-
-            choices: [
-
-                {
-                    text:
-                        "Give the water to the child.",
-
-                    next:
-                        9
-                },
-
-                {
-                    text:
-                        "Save the water for later.",
-
-                    next:
-                        10
-                }
-
-            ]
-        },
-
-
-        {
-            speaker:
-                "Volunteer",
-
-            text:
-                "The door stays closed. For several minutes, nobody knows whether the people outside have found another shelter.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Mrs. Lee",
-
-            text:
-                "The child takes a small drink. Around the room, people quietly share what little they have.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Volunteer",
-
-            text:
-                "The water is almost gone, but the room is calmer now.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Mrs. Lee",
-
-            text:
-                "Nobody here knows how long this will last. For tonight, the shelter is still standing.",
-
-            choices: null
-        }
-
-    ]
-
-},
-
-
-/* =====================================================
-   BATTLE SITE
-===================================================== */
-
-4: {
-
-    title:
-        "Battle Site",
-
-    left:
-        "Private Ahmad",
-
-    right:
-        "Medic Wong",
-
-    fragment:
-        "ORY",
-
-    story: [
-
-        {
-            speaker:
-                "Private Ahmad",
-
-            text:
-                "The road is almost impossible to recognise. Smoke hangs over the buildings, and the sound of vehicles echoes somewhere nearby.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Medic Wong",
-
-            text:
-                "We have injured people who need to be moved. We cannot stay here much longer.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Private Ahmad",
-
-            text:
-                "There are two routes. The main road is faster. The smaller route takes longer but provides more cover.",
-
-            choices: [
-
-                {
-                    text:
-                        "Take the faster main road.",
-
-                    next:
-                        5
-                },
-
-                {
-                    text:
-                        "Take the sheltered route.",
-
-                    next:
-                        7
-                }
-
-            ]
-        },
-
-
-        {
-            speaker:
-                "Medic Wong",
-
-            text:
-                "The main road is exposed, but every minute matters. We move quickly.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Private Ahmad",
-
-            text:
-                "The sheltered route is slower. Everyone has to move carefully through the damaged buildings.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Medic Wong",
-
-            text:
-                "We have another problem. One of the injured cannot walk.",
-
-            choices: [
-
-                {
-                    text:
-                        "Carry them together.",
-
-                    next:
-                        9
-                },
-
-                {
-                    text:
-                        "Move the others first and return for them.",
-
-                    next:
-                        10
-                }
-
-            ]
-        },
-
-
-        {
-            speaker:
-                "Medic Wong",
-
-            text:
-                "We cannot leave anyone behind if there is another option. Ahmad, help me lift them.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Private Ahmad",
-
-            text:
-                "The group moves slowly, but everyone makes it through the route.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Medic Wong",
-
-            text:
-                "The injured soldier is moved to safety. The route took longer, but the group arrived together.",
-
-            choices: null
-        },
-
-
-        {
-            speaker:
-                "Medic Wong",
-
-            text:
-                "For a moment, the noise around them fades. They have made it through.",
-
-            choices: null
-        }
-
-    ]
-
-}
-
-};
+const sites = {};
 
 
 sites[1] = {
     title: "Fort Canning",
-    left: "Edward Scully",
-    right: "Federated Malay States Volunteer Forces",
+    left: "Harbour Signaller (illustrative)",
+    right: "Combined Operations staff",
     fragment: "SING",
-    sourceLabel: "National Archives of Singapore oral history, Edward Scully, Accession 000261, Track 3",
-    sourceUrl: "https://www.nas.gov.sg/archivesonline/oral_history_interviews/interview/000261",
-    locationNote: "This oral-history account concerns the Causeway, not events at Fort Canning.",
+    sourceLabel: "Wikipedia: Battlebox, and Fort Canning Lighthouse (citing National Heritage Board on-site board)",
+    sourceUrl: "https://en.wikipedia.org/wiki/Battlebox",
     images: [
         { src: "Images/fortcanning/fort-canning-park-nature-walk-hero-spice-gallery.jpg", caption: "Fort Canning Park" },
         { src: "Images/fortcanning/34bc87402c26577dc5053ccdd613b2a4d708ac0a-1600x1067.jpg", caption: "Fort Canning grounds" },
@@ -844,27 +62,32 @@ sites[1] = {
     ],
     story: [
         {
-            speaker: "EDWARD SCULLY — PRIVATE, F.M.S. VOLUNTEER FORCES",
-            text: "Edward Scully served in the Federated Malay States Volunteer Forces. In an oral-history interview held by the National Archives of Singapore, he recalled the Allied withdrawal into Singapore and the destruction of the Johor end of the Causeway. After the last British troops crossed on 31 January 1942, engineers blew the Causeway to slow the Japanese advance. The blasts damaged the lock's lift bridge and left a gap about 21 metres wide. Scully's interview describes the withdrawal and demolition as events he lived through; this retelling paraphrases the archive summary and is not a verbatim quotation. The damaged crossing was not an impenetrable barrier. Japanese engineers later built a temporary bridge, and troops crossed into Singapore on 8 February. At this stop, imagine being part of a retreat with limited time: do you give priority to getting the remaining force across, or to delaying the pursuing army? The choice is yours for reflection. It is not attributed to Scully, and the documented events remain unchanged.",
+            speaker: "FORT CANNING HILL — A VIEW OVER THE HARBOUR",
+            text: "After the British set up a port in Singapore in 1819, they made Fort Canning Hill a communications centre, because it overlooked the harbour. The first facility on the hill was a flagstaff. A time ball, a lighthouse and a telegraph office followed.",
             choices: null
         },
         {
-            speaker: "THE RETREAT — DECISION POINT",
-            text: "Scully's recorded account concerns the phased withdrawal and the later destruction of the Causeway. How would you balance protecting people who are still retreating against buying time for the defence of Singapore? Choose one response; the next scene will state your decision and then return to what the historical record says actually happened.",
+            speaker: "FEBRUARY 1942 — FROM SIGNALS TO COMMAND",
+            text: "By February 1942 the hill's job had changed from signalling to command. Combined Operations Headquarters moved into the underground bunker, now called the Battlebox, on 11 February. Four days later, Lieutenant-General Percival met his senior officers there to decide whether to surrender.",
+            choices: null
+        },
+        {
+            speaker: "A HILL AT THE CENTRE OF THE CITY — DECISION POINT",
+            text: "This is a reflection question, not a historical record of anyone's choice. Why do you think the hill was chosen, first for signals and later for a headquarters?",
             choices: [
-                { text: "Prioritise bringing the remaining troops across before demolishing the crossing.", next: 2 },
-                { text: "Prioritise delaying the Japanese advance, even if the retreat becomes harder.", next: 3 }
+                { text: "Its height gave a clear view over the harbour.", next: 3 },
+                { text: "A bunker underground gave protection from bombing.", next: 4 }
             ]
         },
         {
-            speaker: "HISTORICAL CONTINUATION — TROOPS WITHDRAW, THEN THE CAUSEWAY IS DESTROYED",
-            text: "YOU CHOSE: bring the remaining troops across before demolition. That is your reflection choice. In the historical sequence, the final British troops crossed to Singapore on 31 January 1942; Allied engineers then blew the Causeway to slow the Japanese advance. The explosions damaged the lift bridge and opened a gap of about 21 metres. The break delayed movement, but it could not hold indefinitely. Japanese engineers assembled a temporary crossing, and Japanese troops entered Singapore on 8 February. Scully's oral-history record identifies him as a private in the F.M.S. Volunteer Forces and records his recollection of the withdrawal and the blowing up of the Johor end. The archive summary does not say that he personally chose when to set off the explosives, so this story does not assign him that decision. Your choice remains visible as your own; the retreat, demolition, and crossing are the events that happened.",
+            speaker: "THE HILL'S VIEW",
+            text: "YOU CHOSE: the view. That is the reason the record gives for the hill's early role: it overlooked the harbour, so signals from here could be seen from the sea and from the port. The same hill later held a headquarters because the high ground and the bunker were already there. The next two stops look at the signalling side of the hill: the flagstaff and the lighthouse.",
             choices: null,
             finish: true
         },
         {
-            speaker: "HISTORICAL CONTINUATION — THE SAME RECORDED WITHDRAWAL",
-            text: "YOU CHOSE: delay the advance, even if retreat becomes harder. This is the alternative you selected, not Scully's recorded decision. The historical sequence does not branch: the last British troops crossed the Causeway on 31 January 1942, then Allied engineers damaged the lift bridge and left a gap of about 21 metres. That demolition was intended to slow the Japanese advance. Japanese engineers later built a temporary bridge, and Japanese troops crossed into Singapore on 8 February. Scully's National Archives interview records his experience of the phased Allied withdrawal and the destruction of the Johor end. The archive summary does not claim that Scully decided how long to wait or personally triggered the blasts. This distinction matters: your choice gives the scene a reflection point, while his real service and the documented sequence stay intact.",
+            speaker: "THE BUNKER'S PROTECTION",
+            text: "YOU CHOSE: protection. That fits the Battlebox, which was built underground as a command centre. But the hill's choice as a communications site goes back much earlier, to the 1819 port, when the reason was its view of the harbour rather than protection from air raids. The next two stops look at that signalling side of the hill: the flagstaff and the lighthouse.",
             choices: null,
             finish: true
         }
@@ -873,12 +96,12 @@ sites[1] = {
 
 sites[2] = {
     title: "Flagstaff",
-    left: "Stanley Warren",
-    right: "Royal Artillery Observation Post",
+    left: "Signaller on duty (illustrative)",
+    right: "Harbour watch (illustrative)",
     fragment: "APORE",
-    sourceLabel: "National Archives of Singapore oral history, Stanley Warren, Accession 000205, Track 4",
-    sourceUrl: "https://www.nas.gov.sg/archivesonline/oral_history_interviews/interview/000205",
-    locationNote: "This oral-history account concerns the Causeway, not events at the Fort Canning flagstaff.",
+    sourceLabel: "Roots.gov.sg (National Heritage Board): Flagstaff on Government Hill",
+    sourceUrl: "https://www.roots.gov.sg/Collection-Landing/listing/1131789",
+    locationNote: "No source I found describes the flagstaff's role in 1942. This stop is about how the hill's signalling worked. The signaller is an illustrative role, not a real person.",
     images: [
         { src: "Images/flagstaff/flagstaff-outzoom.jpg", caption: "Fort Canning flagstaff, viewed from a distance" },
         { src: "Images/flagstaff/fort-canning-flagstaff-outside.jpg", caption: "Fort Canning flagstaff" },
@@ -886,27 +109,32 @@ sites[2] = {
     ],
     story: [
         {
-            speaker: "STANLEY WARREN — OBSERVATION POST ASSISTANT",
-            text: "Stanley Warren served as an observation-post assistant with the 344 Battalion, 135th Regiment, Royal Artillery. The National Archives of Singapore preserves his account of the battalion's attempt to deter Japanese troops from crossing the Causeway. The Causeway had been damaged by Allied demolition on 31 January, but Japanese engineers later made a temporary crossing. For the artillery, observation mattered: reports from a post could help commanders understand where the advance was happening and how quickly the situation was changing. Warren's interview is a real soldier's testimony, not a script written for this game. The archive describes his role and the battalion's effort; it does not attribute the fictional options below to him or record a precise choice between the two. Consider the pressures on a small observation team: pass information while the line is under threat, or withdraw before the position is cut off. Either way, the historical account belongs to Warren and his unit, and the choice in this experience belongs to you.",
+            speaker: "THE FLAGSTAFF — SIGNALS FOR THE PORT",
+            text: "The flagstaff on Government Hill, today's Fort Canning, signalled the arrival of ships. It was one of a set of flagstaffs on high ground with a view of the entrances to the Singapore River and the harbour. The others stood on Mount Faber and on Pulau Blakang Mati, now Sentosa.",
             choices: null
         },
         {
-            speaker: "CAUSEWAY DEFENCE — DECISION POINT",
-            text: "The next choice is a modern reflection on the work Warren described. It is not presented as a quotation or a choice he personally made. Which task would you put first when the position is becoming dangerous? The following scene will identify your selection and then continue with the known account of the battalion's effort to deter the crossing.",
+            speaker: "THE 1840s — WAITING FOR MAIL",
+            text: "In the 1840s, mail from London took more than a month to reach Singapore. The flagstaff announced the mail ships. A red ensign meant mail from Europe, and a yellow flag meant mail from China.",
+            choices: null
+        },
+        {
+            speaker: "SIGNAL DUTY — DECISION POINT",
+            text: "You are the signaller on duty. This is an illustrative role, not a real person. A mail steamer from Europe has just been sighted from the hill. Which flag do you raise?",
             choices: [
-                { text: "Keep observing and pass on reports about the crossing.", next: 2 },
-                { text: "Withdraw the observation team before the route is cut off.", next: 3 }
+                { text: "The red ensign.", next: 3 },
+                { text: "The yellow flag.", next: 4 }
             ]
         },
         {
-            speaker: "HISTORICAL CONTINUATION — OBSERVATION AND RESISTANCE",
-            text: "YOU CHOSE: keep observing and report the crossing. This is your answer to the reflection prompt. The National Archives account says Warren's battalion tried to deter Japanese troops from crossing the Causeway into Singapore. It identifies him as an observation-post assistant in the Royal Artillery and records his recollection of that effort. Japanese engineers had repaired the crossing sufficiently for troops to enter Singapore on 8 February 1942. The source summary does not say that Warren made the exact choice shown above, so the game does not put invented words into his mouth. The wider outcome was that the Allied defence was pushed back toward the city; one week later, on 15 February, Singapore surrendered. The flagstaff image marks this trail stop, but it is not evidence that Warren served at this exact landmark. His testimony is linked below so you can distinguish the real account from this interpretive setting.",
+            speaker: "THE RIGHT SIGNAL",
+            text: "YOU CHOSE: the red ensign, and that matches the record. A red ensign meant European mail. By 1855 a lantern had also been fixed to the top of the flagstaff, so it could signal by night too. Later that light was replaced by the Fort Canning Lighthouse, the next stop on the trail.",
             choices: null,
             finish: true
         },
         {
-            speaker: "HISTORICAL CONTINUATION — A POSITION UNDER PRESSURE",
-            text: "YOU CHOSE: withdraw the observation team before the route is cut off. That is the alternative you selected. The documented account still follows Warren's real experience: he served as an observation-post assistant with the 344 Battalion, 135th Regiment, Royal Artillery, and recalled that his battalion tried to deter Japanese troops from crossing the Causeway. The crossing was breached after the British demolition and later made passable by Japanese engineers; Japanese troops entered Singapore on 8 February 1942. The archive summary does not say Warren chose the withdrawal option in this game, so this branch does not claim that he did. It ends with the historical result rather than an invented escape: the Allied defence continued to contract, and Singapore surrendered on 15 February. Your selected response is clearly marked as yours; Warren's service remains the real story behind this scene.",
+            speaker: "THE WRONG SIGNAL",
+            text: "YOU CHOSE: the yellow flag, which meant mail from China. The record gives a red ensign for European mail, so a signal like this would have misled the port. By 1855 a lantern had also been fixed to the top of the flagstaff, so it could signal by night too. Later that light was replaced by the Fort Canning Lighthouse, the next stop on the trail.",
             choices: null,
             finish: true
         }
@@ -915,12 +143,12 @@ sites[2] = {
 
 sites[3] = {
     title: "Lighthouse",
-    left: "Yeoh Seang Aun",
-    right: "A group of eight travellers",
+    left: "Lightkeeper (illustrative)",
+    right: "Ship's lookout (illustrative)",
     fragment: "HIST",
-    sourceLabel: "National Archives of Singapore oral history, Yeoh Seang Aun, Accession 000182, Track 4",
-    sourceUrl: "https://www.nas.gov.sg/archivesonline/oral_history_interviews/interview/000182",
-    locationNote: "This oral-history account concerns a journey from Woodlands toward the Causeway, not a lighthouse event.",
+    sourceLabel: "Roots.gov.sg (National Heritage Board): The Tale of Three Lighthouses",
+    sourceUrl: "https://www.roots.gov.sg/en/stories-landing/stories/the-tale-of-three-lighthouses/story",
+    locationNote: "Sources differ on the build year (1902 or 1903). No source I found describes a specific 1942 event here. The lightkeeper and lookout are illustrative roles, not real people.",
     images: [
         { src: "Images/lighthouse/1761458925-light-keeper-tn.jpg", caption: "Lighthouse keeper" },
         { src: "Images/lighthouse/dd3a29d5be4ed3612486d6b407a6c3e7.jpg", caption: "Singapore lighthouse" },
@@ -928,27 +156,32 @@ sites[3] = {
     ],
     story: [
         {
-            speaker: "YEOH SEANG AUN — DEPUTY DIRECTOR, MEDICAL SERVICES",
-            text: "Yeoh Seang Aun was Deputy Director of Medical Services in Singapore. In his National Archives oral-history interview, he recalled travelling from Woodlands toward the Causeway with seven other people. They hoped to return to Malaysia because of the fear and uncertainty they faced during the Japanese Occupation. The catalogue does not turn this journey into a dramatic escape scene: it records the group, the route, their hope, and the reason they set out. That is enough to make the account human. A decision about leaving is rarely only about a road on a map; it is also about safety, family, work, and what may happen if one stays. The next choice asks you to weigh those pressures, but it is an interpretive prompt, not Yeoh's recorded decision. The lighthouse photographs belong to the heritage trail, not to his testimony. After your choice, the story will return to what the archive actually says: Yeoh and seven others made the journey toward the Causeway hoping to get back to Malaysia.",
+            speaker: "THE LIGHT ON THE HILL",
+            text: "Around 1902 to 1903, the Fort Canning Lighthouse replaced the old flagstaff light. Riley, Hargreaves and Company built it on the southern part of the hill. The tower was 24.3 metres high, and its light came from a vaporised kerosene burner producing 20,000 candelas.",
             choices: null
         },
         {
-            speaker: "A JOURNEY TOWARD THE CAUSEWAY — DECISION POINT",
-            text: "Imagine that you are deciding whether to travel with a group away from a city under occupation. Staying may mean holding on to familiar work and contacts; leaving means facing an uncertain journey and an uncertain destination. Those are reflections for the player, not details assigned to Yeoh by the catalogue. Choose the response that feels most responsible to you. The next scene will state your choice and preserve the limits of the historical record.",
+            speaker: "A LIGHT THAT BLINKS",
+            text: "The light was not steady. A metal cylinder was lowered around the burner so that the beam was cut off for three seconds every 17 seconds. Sailors tell lighthouses apart by this kind of pattern.",
+            choices: null
+        },
+        {
+            speaker: "THE LOOKOUT'S QUESTION — DECISION POINT",
+            text: "You are a lookout on a ship, and this is an illustrative role. Why would the lighthouse go dark for three seconds every 17?",
             choices: [
-                { text: "Travel with the group toward the Causeway and try to return to Malaysia.", next: 2 },
-                { text: "Remain in Singapore until the situation becomes clearer.", next: 3 }
+                { text: "So ships can recognise this light and tell it from others.", next: 3 },
+                { text: "To save kerosene.", next: 4 }
             ]
         },
         {
-            speaker: "HISTORICAL CONTINUATION — THE GROUP SETS OUT",
-            text: "YOU CHOSE: travel with the group toward the Causeway. That matches the action recorded in Yeoh Seang Aun's interview: he and seven others journeyed from Woodlands to the Causeway hoping to return to Malaysia, driven by the fear and uncertainty of the occupation. The catalogue does not tell us that your hypothetical decision caused their journey, nor does its summary establish every detail of what happened after they set out. This scene therefore stops at the documented point rather than inventing a safe arrival or a reunion. Yeoh's professional role in medical services also reminds us that people with important work and responsibilities were caught up in the same uncertainty as everyone else. Read his testimony as a memory preserved decades later, not as fictional dialogue. The linked National Archives record identifies the interview and track behind this retelling.",
+            speaker: "A RECOGNISABLE PATTERN",
+            text: "YOU CHOSE: recognition, which is how light patterns work. A ship that saw a light cut off for three seconds every 17 could tell it from other lights along the coast. The lighthouse guided ships for 55 years. It was decommissioned on 12 December 1958, after tall buildings blocked its view from the sea. The original tower survived the Second World War. Today's lighthouse on the hill is a replica, relit in April 2014.",
             choices: null,
             finish: true
         },
         {
-            speaker: "HISTORICAL CONTINUATION — THE RECORDED JOURNEY",
-            text: "YOU CHOSE: remain in Singapore until the situation became clearer. That is your hypothetical alternative; it is not what Yeoh's catalogue entry records. The National Archives account says he and seven others travelled from Woodlands to the Causeway because they hoped to return to Malaysia and feared the uncertainty of the occupation. This branch does not rewrite that memory or suggest that Yeoh stayed behind. It also avoids claiming a destination or outcome that the short archive description does not establish. The contrast is the point: you chose to wait, while the real account preserves a group that chose to set out. Yeoh's role as Deputy Director of Medical Services is part of the record, but the interview summary presents him here as a person navigating an uncertain journey, not only as a job title. The source link below leads to the actual interview record.",
+            speaker: "NOT QUITE",
+            text: "YOU CHOSE: saving fuel. The sources don't give that as a reason. The pattern is how a light is identified: a ship that saw a light cut off for three seconds every 17 could tell it from other lights. The lighthouse guided ships for 55 years. It was decommissioned on 12 December 1958, after tall buildings blocked its view from the sea. The original tower survived the Second World War. Today's lighthouse on the hill is a replica, relit in April 2014.",
             choices: null,
             finish: true
         }
@@ -1057,7 +290,7 @@ function resetPrototype() {
         STORAGE_KEY
     );
 
-    location.reload();
+    location.href = location.pathname;
 
 }
 
@@ -1144,8 +377,37 @@ function updateUI() {
             : "+2 stamps / correct · once only";
 
 
+    updateTrailProgress();
     updateFragments();
     renderRewardsShop();
+
+}
+
+
+function updateTrailProgress() {
+
+    const order = [1, 2, 3, 4];
+    const done = order.filter(i => state.completedSites.includes(i)).length;
+    const nextId = order.find(i => !state.completedSites.includes(i));
+
+    order.forEach(i => {
+        document
+            .getElementById(`site${i}`)
+            .classList.toggle("next", i === nextId);
+    });
+
+    const line = document.getElementById("progressLine");
+
+    if (nextId) {
+        line.textContent =
+            `${done} of 4 stops complete · Next: ${sites[nextId].title}`;
+    } else if (!state.passphraseCompleted) {
+        line.textContent =
+            "All 4 stops complete · Decode the dispatch below";
+    } else {
+        line.textContent =
+            "Trail complete · Visit the Memory Hub";
+    }
 
 }
 
@@ -1176,12 +438,33 @@ function renderRewardsShop() {
         document
             .getElementById(`redeemed-${id}`)
             .textContent = `${redeemedCount} redeemed`;
+
+        const button = document
+            .getElementById(`redeemed-${id}`)
+            .closest(".reward-details")
+            .querySelector(".redeem-button");
+
+        let need = button.nextElementSibling;
+        if (!need || !need.classList.contains("reward-need")) {
+            need = document.createElement("p");
+            need.className = "reward-need";
+            button.after(need);
+        }
+
+        const missing = rewards[id].cost - state.stamps;
+        const affordable = missing <= 0;
+
+        button.classList.toggle("affordable", affordable);
+        need.classList.toggle("ready", affordable);
+        need.textContent = affordable
+            ? "You have enough stamps"
+            : `Need ${missing} more stamp${missing === 1 ? "" : "s"}`;
     });
 
     if (!atBooth) {
         document
             .getElementById("redeemStatus")
-            .textContent = "Redemptions are available in person at the event booth only.";
+            .textContent = "Tick the box above when you are at the booth to enable redemption.";
     }
 }
 
@@ -1415,6 +698,14 @@ function showDialogue() {
             currentDialogue
         ];
 
+
+    const backdrop = document.querySelector(".vn-background");
+    const photo = data.images && data.images[0];
+
+    if (backdrop && photo) {
+        backdrop.style.background =
+            `linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.8)), url("${photo.src}") center / cover`;
+    }
 
     document
         .getElementById("charLeft")
@@ -2189,10 +1480,7 @@ function openQuiz() {
         return;
     }
 
-    state.quizAttempted = true;
     state.quizCorrect = 0;
-    saveState();
-    updateUI();
 
     document
         .getElementById(
@@ -2301,6 +1589,11 @@ function answerQuiz(answer) {
     }
 
     answeredCurrentQuestion = true;
+
+    if (!state.quizAttempted) {
+        state.quizAttempted = true;
+        updateUI();
+    }
 
     document
         .querySelectorAll(".quiz-answer")
@@ -2760,3 +2053,43 @@ function escapeHTML(text) {
 ===================================================== */
 
 loadState();
+
+
+/* =====================================================
+   DEMO MODE
+   Open index.html?demo=1 to skip the story playthrough:
+   all four sites completed, all fragments, 10 stamps.
+   Use RESET to go back to a fresh game.
+===================================================== */
+
+if (new URLSearchParams(location.search).get("demo") === "1") {
+
+    state.completedSites = [1, 2, 3, 4];
+    state.fragments = [1, 2, 3, 4].map(id => sites[id].fragment);
+    state.stamps = Math.max(state.stamps, 10);
+
+    saveState();
+    updateUI();
+
+}
+
+
+/* =====================================================
+   KEYBOARD: ESC CLOSES THE OPEN MODAL
+===================================================== */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key !== "Escape") {
+        return;
+    }
+
+    if (!document.getElementById("storyModal").classList.contains("hidden")) {
+        closeStory();
+    } else if (!document.getElementById("quizModal").classList.contains("hidden")) {
+        closeQuiz();
+    } else if (!document.getElementById("memoryModal").classList.contains("hidden")) {
+        closeMemory();
+    }
+
+});
