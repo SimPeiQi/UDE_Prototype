@@ -68,7 +68,7 @@
                 <span class="project-number">CHECKPOINT 01</span>
                 <span class="site-status" id="siteStatus2">Unexplored</span>
             </div>
-            <div class="sensory-demo" aria-label="Sensory box with visual, audio and vibration cues">
+            <div class="sensory-demo" role="region" aria-label="Sensory box with visual, audio and vibration cues">
                 <div class="box-headset" aria-hidden="true">VR</div>
                 <div class="radio-panel" aria-hidden="true">
                     <span class="signal-label">FIELD SIGNAL</span>
@@ -79,7 +79,11 @@
             <p class="eyebrow">SENSORY BOX · VR HEADSET POV</p>
             <h2>Observe the crossing</h2>
             <p class="project-story">Experience Stanley Warren’s observation-post account through a first-person scene.</p>
-            <div class="sensory-tags" aria-label="Sensory elements"><span>◈ Visual</span><span>♫ Audio</span><span>〰 Vibration</span></div>
+            <ul class="sensory-tags" aria-label="Sensory elements">
+                <li>◈ Visual</li>
+                <li>♫ Audio</li>
+                <li>〰 Vibration</li>
+            </ul>
             <p class="simulation-note">Screen demo of proposed headset, sound and haptic cues.</p>
             <button class="primary project-button" type="button" onclick="openSite(2)">ENTER SENSORY POV</button>
         </article>
@@ -89,7 +93,10 @@
                 <span class="project-number">CHECKPOINT 02</span>
                 <span class="site-status" id="siteStatus4">Unexplored</span>
             </div>
-            <div class="hologram-demo" aria-label="Holographic 3D figure of a wartime commander">
+            <div
+                class="hologram-demo"
+                role="img"
+                aria-label="Holographic 3D figure of a wartime commander">
                 <div class="hologram-ring" aria-hidden="true"></div>
                 <div class="hologram-person" aria-hidden="true"><i></i></div>
                 <span class="hologram-caption">HISTORICAL WITNESS · 1942</span>
@@ -97,7 +104,11 @@
             <p class="eyebrow">3D HOLOGRAM · VR HEADSET POV</p>
             <h2>Meet the commander</h2>
             <p class="project-story">Stand before a holographic Lieutenant-General Percival and respond to the Battlebox decision.</p>
-            <div class="sensory-tags" aria-label="Interaction elements"><span>◈ 3D figure</span><span>◉ Look around</span><span>⌘ Choose a response</span></div>
+            <ul class="sensory-tags" aria-label="Interaction elements">
+                <li>◈ 3D figure</li>
+                <li>◉ Look around</li>
+                <li>⌘ Choose a response</li>
+            </ul>
             <p class="simulation-note">Screen demo of a projected character and interactive encounter.</p>
             <button class="primary project-button" type="button" onclick="openSite(4)">ENTER HOLOGRAM POV</button>
         </article>
@@ -260,18 +271,23 @@
 
 <div
     id="storyModal"
-    class="modal hidden">
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="storyTitle">
 
     <div class="modal-box">
 
         <div class="modal-header">
 
-            <strong id="storyTitle">
+            <h2 id="storyTitle">
                 LOCATION
-            </strong>
+            </h2>
 
             <button
                 class="close"
+                type="button"
+                aria-label="Close story"
                 onclick="closeStory()">
 
                 ×
@@ -380,18 +396,23 @@
 
 <div
     id="quizModal"
-    class="modal hidden">
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="quizTitle">
 
     <div class="modal-box">
 
         <div class="modal-header">
 
-            <strong>
+            <h2 id="quizTitle">
                 HISTORY QUIZ
-            </strong>
+            </h2>
 
             <button
                 class="close"
+                type="button"
+                aria-label="Close history quiz"
                 onclick="closeQuiz()">
 
                 ×
@@ -418,18 +439,23 @@
 
 <div
     id="memoryModal"
-    class="modal hidden">
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="memoryModalTitle">
 
     <div class="modal-box">
 
         <div class="modal-header">
 
-            <strong>
+            <h2 id="memoryModalTitle">
                 MEMORY WALL
-            </strong>
+            </h2>
 
             <button
                 class="close"
+                type="button"
+                aria-label="Close memory wall"
                 onclick="closeMemory()">
 
                 ×
@@ -444,9 +470,9 @@
 
                 <div class="memory-title">
 
-                    <h1>
+                    <h3>
                         THE MEMORY WALL
-                    </h1>
+                    </h3>
 
                     <p>
                         Leave a small trace of your journey.
@@ -460,7 +486,7 @@
                 </div>
 
                 <div class="memory-form">
-
+                    <label for="memoryInput">Your memory</label>
                     <textarea
                         id="memoryInput"
                         placeholder="e.g. XX was here — remembering Singapore, 1942.">

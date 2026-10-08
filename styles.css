@@ -1512,7 +1512,7 @@ main {
 
 .modal[data-experience="hologram"] .character.left {
     z-index: 2;
-    left: calc(50% - 110px);
+    left: calc(50% - 180px);
 }
 
 .modal[data-experience="hologram"] .character.right { opacity: 1; }
