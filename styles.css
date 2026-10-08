@@ -1200,3 +1200,374 @@ main {
         white-space: normal;
     }
 }
+
+/* =====================================================
+   SIMPLE VR PROJECT DEMO
+===================================================== */
+
+:root {
+    color-scheme: dark;
+    --vr-bg: #0b1218;
+    --vr-panel: #121d25;
+    --vr-line: #293c45;
+    --vr-cyan: #87e4e5;
+    --vr-muted: #a2b3b7;
+}
+
+body {
+    background: var(--vr-bg);
+    color: #e8f1ef;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+header {
+    background: #0a1117;
+    border-color: var(--vr-line);
+}
+
+.logo { color: var(--vr-cyan); }
+.status { color: var(--vr-muted); }
+.status span { color: var(--vr-cyan); }
+
+main {
+    max-width: 1080px;
+    padding: 42px 24px 56px;
+}
+
+.section-title.vr-intro {
+    margin-bottom: 28px;
+    text-align: left;
+}
+
+.vr-intro h1 {
+    color: #e8f1ef;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: clamp(30px, 5vw, 44px);
+    font-weight: 400;
+}
+
+.vr-intro p:last-child { color: var(--vr-muted); }
+
+.eyebrow,
+.project-number {
+    color: var(--vr-cyan);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.project-card,
+.extra-card {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--vr-line);
+    background: var(--vr-panel);
+}
+
+.project-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.project-card .site-status,
+.other-stories .site-status,
+.extra-card .site-status {
+    color: var(--vr-muted);
+    font-size: 11px;
+}
+
+.sensory-demo,
+.hologram-demo {
+    position: relative;
+    display: flex;
+    height: 170px;
+    align-items: center;
+    justify-content: center;
+    margin: 16px 0 20px;
+    overflow: hidden;
+    border: 1px solid #29434a;
+    background: radial-gradient(ellipse at center, #17323a, #0a141a 72%);
+}
+
+.sensory-demo::after,
+.hologram-demo::after {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0 5px, rgba(135, 228, 229, .035) 6px);
+    content: "";
+    pointer-events: none;
+}
+
+.box-headset {
+    position: absolute;
+    top: 13px;
+    right: 14px;
+    display: grid;
+    width: 34px;
+    height: 24px;
+    place-items: center;
+    border: 1px solid #6bbabc;
+    border-radius: 5px;
+    color: var(--vr-cyan);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.radio-panel {
+    display: grid;
+    width: 76%;
+    height: 104px;
+    align-content: center;
+    gap: 13px;
+    padding: 13px 16px;
+    border: 1px solid #42757b;
+    background: rgba(9, 24, 29, .8);
+    box-shadow: 0 0 20px rgba(94, 213, 216, .1);
+}
+
+.signal-label,
+.hologram-caption {
+    color: #a4d8d7;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+}
+
+.signal-wave {
+    color: var(--vr-cyan);
+    font-family: Consolas, monospace;
+    font-size: clamp(17px, 3vw, 26px);
+    letter-spacing: 2px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(135, 228, 229, .7);
+}
+
+.signal-controls { display: flex; justify-content: space-between; }
+.signal-controls i { width: 25%; height: 3px; background: #437d80; }
+.signal-controls i:nth-child(2) { background: var(--vr-cyan); }
+
+.hologram-ring {
+    position: absolute;
+    bottom: 15px;
+    width: 180px;
+    height: 48px;
+    border: 1px solid rgba(135, 228, 229, .7);
+    border-radius: 50%;
+    box-shadow: 0 0 17px rgba(135, 228, 229, .35);
+}
+
+.hologram-person {
+    position: relative;
+    z-index: 1;
+    width: 70px;
+    height: 105px;
+    margin-top: 12px;
+    clip-path: polygon(35% 0, 65% 0, 70% 21%, 100% 36%, 87% 49%, 76% 43%, 80% 100%, 20% 100%, 24% 43%, 13% 49%, 0 36%, 30% 21%);
+    background: repeating-linear-gradient(0deg, rgba(139, 248, 238, .75) 0 1px, rgba(56, 171, 177, .18) 2px 5px);
+    filter: drop-shadow(0 0 11px rgba(105, 232, 226, .8));
+}
+
+.hologram-person::before {
+    position: absolute;
+    top: -17px;
+    left: 24px;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #a3fff0;
+    border-radius: 50%;
+    background: rgba(117, 229, 222, .42);
+    box-shadow: 0 0 14px rgba(117, 229, 222, .7);
+    content: "";
+}
+
+.hologram-caption {
+    position: absolute;
+    bottom: 12px;
+}
+
+.project-card h2 {
+    margin: 9px 0 7px;
+    color: #eff7f4;
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.project-story,
+.simulation-note,
+.extra-card > p:not(.eyebrow) {
+    color: var(--vr-muted);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.sensory-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 16px 0 8px;
+    color: #a8d1d0;
+    font-size: 10px;
+}
+
+.simulation-note {
+    margin: 8px 0 15px;
+    font-size: 11px;
+}
+
+.project-button { width: 100%; }
+
+.primary {
+    border-color: #66b7bb;
+    background: #17616a;
+}
+.primary:hover { background: #207984; }
+
+.secondary {
+    border-color: var(--vr-line);
+    background: #17252d;
+    color: #d8e6e3;
+}
+.secondary:hover { border-color: var(--vr-cyan); }
+
+.other-stories {
+    margin-top: 16px;
+    border: 1px solid var(--vr-line);
+    background: #0f1920;
+}
+
+.other-stories summary {
+    padding: 14px 17px;
+    color: #dce9e6;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.other-stories summary span {
+    margin-left: 8px;
+    color: var(--vr-muted);
+    font-size: 11px;
+}
+
+.story-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 17px 15px;
+}
+
+.story-links > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.story-links button { padding: 8px 10px; font-size: 11px; }
+
+.extras-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.extra-card .eyebrow { margin: 0; }
+.extra-card .secondary { display: block; margin-top: 12px; }
+
+.passphrase-panel,
+.rewards-section {
+    border-color: var(--vr-line);
+    background: var(--vr-panel);
+}
+
+.passphrase-panel h2,
+.rewards-heading h2 { color: #e8f1ef; }
+
+.rewards-heading { border-color: var(--vr-line); }
+.rewards-heading p,
+.redeem-status { color: var(--vr-muted); }
+.reward-card { border-color: var(--vr-line); background: #0d171e; }
+.reward-details h3 { color: #e8f1ef; }
+
+.modal {
+    background: rgba(2, 7, 11, .86);
+    backdrop-filter: blur(5px);
+}
+
+.modal-box { border-color: var(--vr-line); background: #0b141a; }
+.modal-header { border-color: var(--vr-line); background: #121e25; color: var(--vr-cyan); }
+.vn-screen { border-color: var(--vr-line); }
+
+.experience-guide {
+    margin: 0 0 12px;
+    padding: 11px 13px;
+    border-left: 3px solid var(--vr-cyan);
+    background: #122128;
+    color: #c2d8d7;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.modal[data-experience="sensory"] .vn-background {
+    background:
+        repeating-linear-gradient(0deg, transparent 0 5px, rgba(119, 225, 225, .07) 6px),
+        radial-gradient(ellipse at 50% 45%, rgba(40, 132, 141, .5), transparent 60%),
+        linear-gradient(140deg, #122a32, #081218);
+}
+
+.modal[data-experience="sensory"] .vn-background::after {
+    position: absolute;
+    top: 44%;
+    left: 28%;
+    width: 44%;
+    height: 2px;
+    background: var(--vr-cyan);
+    box-shadow: 12px -12px 0 -0.5px var(--vr-cyan), 24px 8px 0 -0.5px var(--vr-cyan), 36px -20px 0 -0.5px var(--vr-cyan), 48px 5px 0 -0.5px var(--vr-cyan), 60px -9px 0 -0.5px var(--vr-cyan), 72px 12px 0 -0.5px var(--vr-cyan), 0 0 12px var(--vr-cyan);
+    content: "";
+    opacity: .65;
+}
+
+.modal[data-experience="hologram"] .vn-background {
+    background:
+        radial-gradient(ellipse at 50% 90%, rgba(82, 219, 211, .2), transparent 48%),
+        linear-gradient(145deg, #19323a, #0a161d 70%);
+}
+
+.modal[data-experience="hologram"] .character.left {
+    z-index: 2;
+    left: calc(50% - 110px);
+}
+
+.modal[data-experience="hologram"] .character.right { opacity: .2; }
+
+.modal[data-experience="hologram"] .character.left .character-silhouette {
+    border-color: rgba(142, 247, 237, .85);
+    background: repeating-linear-gradient(0deg, rgba(129, 232, 226, .65) 0 1px, rgba(32, 103, 111, .55) 2px 5px);
+    box-shadow: 0 0 20px rgba(94, 226, 218, .48), inset 0 0 24px rgba(94, 226, 218, .25);
+}
+
+.modal[data-experience="hologram"] .character.left .character-silhouette::before {
+    border-color: rgba(158, 255, 241, .9);
+    background: rgba(91, 194, 190, .65);
+    box-shadow: 0 0 18px rgba(94, 226, 218, .75);
+}
+
+@media (max-width: 700px) {
+    main { padding: 28px 14px 40px; }
+    .project-grid { grid-template-columns: 1fr; }
+    .project-card { padding: 16px; }
+    .sensory-demo, .hologram-demo { height: 150px; }
+    .extras-grid { grid-template-columns: 1fr; }
+    .rewards-heading { align-items: flex-start; flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

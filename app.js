@@ -829,7 +829,7 @@ const sites = {
 
 
 sites[1] = {
-    title: "Fort Canning",
+    title: "The Causeway Withdrawal",
     left: "Edward Scully",
     right: "Federated Malay States Volunteer Forces",
     fragment: "SING",
@@ -872,7 +872,7 @@ sites[1] = {
 };
 
 sites[2] = {
-    title: "Flagstaff",
+    title: "The Observation Post",
     left: "Stanley Warren",
     right: "Royal Artillery Observation Post",
     fragment: "APORE",
@@ -914,7 +914,7 @@ sites[2] = {
 };
 
 sites[3] = {
-    title: "Lighthouse",
+    title: "The Journey to Safety",
     left: "Yeoh Seang Aun",
     right: "A group of eight travellers",
     fragment: "HIST",
@@ -956,7 +956,7 @@ sites[3] = {
 };
 
 sites[4] = {
-    title: "Underground Bunker",
+    title: "The Final Decision",
     left: "Lieutenant-General Arthur Percival",
     right: "Senior Allied officers",
     fragment: "ORY",
@@ -1354,6 +1354,24 @@ function openSite(id) {
         .textContent =
         data.title;
 
+    const storyModal =
+        document.getElementById("storyModal");
+    const experienceGuide =
+        document.getElementById("experienceGuide");
+
+    if (id === 2) {
+        storyModal.dataset.experience = "sensory";
+        experienceGuide.textContent =
+            "SENSORY BOX POV · VR HEADSET — Imagine the night observation post: scan the crossing, listen for distant movement and radio reports, and feel a pulse when the signal changes. Sound and vibration are represented here, not played by this screen.";
+    } else if (id === 4) {
+        storyModal.dataset.experience = "hologram";
+        experienceGuide.textContent =
+            "3D HOLOGRAM POV · VR HEADSET — Face a projected Lieutenant-General Percival in the Battlebox. Look around the scene and choose your response to the historical decision.";
+    } else {
+        storyModal.dataset.experience = "archive";
+        experienceGuide.textContent =
+            "STORY ARCHIVE — Read the account and make a reflection choice.";
+    }
 
     document
         .getElementById("storyModal")

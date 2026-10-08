@@ -56,263 +56,80 @@
 
 <section id="mapSection">
 
-    <div class="section-title">
-
-        <h1>
-            Singapore, 1942
-        </h1>
-
-        <p>
-            Follow the trail. Recover the story.
-            Complete the dispatch.
-        </p>
-
+    <div class="section-title vr-intro">
+        <p class="eyebrow">THE LAST DISPATCH · SINGAPORE, 1942</p>
+        <h1>Two ways to step into history</h1>
+        <p>Choose a VR checkpoint to experience a story from a first-person view.</p>
     </div>
 
-
-    <!-- MAP -->
-
-    <div class="map-container">
-
-        <div class="map-title">
-
-            <strong>
-                WWII HERITAGE TRAIL
-            </strong>
-
-            <br>
-
-            <small>
-                Select a location to begin
-            </small>
-
-        </div>
-
-        <div class="road horizontal r1"></div>
-        <div class="road horizontal r2"></div>
-        <div class="road vertical v1"></div>
-        <div class="road vertical v2"></div>
-
-
-        <!-- SITE 1 -->
-
-        <div
-            class="site s1"
-            id="site1">
-
-            <button
-                class="site-button"
-                onclick="openSite(1)">
-
-                ✦
-
-            </button>
-
-            <div class="site-label">
-                Fort Canning
+    <div class="project-grid">
+        <article class="project-card sensory-project" id="site2">
+            <div class="project-heading">
+                <span class="project-number">CHECKPOINT 01</span>
+                <span class="site-status" id="siteStatus2">Unexplored</span>
             </div>
-
-            <div
-                class="site-status"
-                id="siteStatus1">
-
-                Unexplored
-
+            <div class="sensory-demo" aria-label="Sensory box with visual, audio and vibration cues">
+                <div class="box-headset" aria-hidden="true">VR</div>
+                <div class="radio-panel" aria-hidden="true">
+                    <span class="signal-label">FIELD SIGNAL</span>
+                    <span class="signal-wave">▂▄▇▃▅█▃▆▂▅▇▄</span>
+                    <span class="signal-controls"><i></i><i></i><i></i></span>
+                </div>
             </div>
+            <p class="eyebrow">SENSORY BOX · VR HEADSET POV</p>
+            <h2>Observe the crossing</h2>
+            <p class="project-story">Experience Stanley Warren’s observation-post account through a first-person scene.</p>
+            <div class="sensory-tags" aria-label="Sensory elements"><span>◈ Visual</span><span>♫ Audio</span><span>〰 Vibration</span></div>
+            <p class="simulation-note">Screen demo of proposed headset, sound and haptic cues.</p>
+            <button class="primary project-button" type="button" onclick="openSite(2)">ENTER SENSORY POV</button>
+        </article>
 
-        </div>
-
-
-        <!-- SITE 2 -->
-
-        <div
-            class="site s2"
-            id="site2">
-
-            <button
-                class="site-button"
-                onclick="openSite(2)">
-
-                ◉
-
-            </button>
-
-            <div class="site-label">
-                Flagstaff
+        <article class="project-card hologram-project" id="site4">
+            <div class="project-heading">
+                <span class="project-number">CHECKPOINT 02</span>
+                <span class="site-status" id="siteStatus4">Unexplored</span>
             </div>
-
-            <div
-                class="site-status"
-                id="siteStatus2">
-
-                Unexplored
-
+            <div class="hologram-demo" aria-label="Holographic 3D figure of a wartime commander">
+                <div class="hologram-ring" aria-hidden="true"></div>
+                <div class="hologram-person" aria-hidden="true"><i></i></div>
+                <span class="hologram-caption">HISTORICAL WITNESS · 1942</span>
             </div>
-
-        </div>
-
-
-        <!-- SITE 3 -->
-
-        <div
-            class="site s3"
-            id="site3">
-
-            <button
-                class="site-button"
-                onclick="openSite(3)">
-
-                ▣
-
-            </button>
-
-            <div class="site-label">
-                Lighthouse
-            </div>
-
-            <div
-                class="site-status"
-                id="siteStatus3">
-
-                Unexplored
-
-            </div>
-
-        </div>
-
-
-        <!-- SITE 4 -->
-
-        <div
-            class="site s4"
-            id="site4">
-
-            <button
-                class="site-button"
-                onclick="openSite(4)">
-
-                ◆
-
-            </button>
-
-            <div class="site-label">
-                Underground Bunker
-            </div>
-
-            <div
-                class="site-status"
-                id="siteStatus4">
-
-                Unexplored
-
-            </div>
-
-        </div>
-
-
-        <!-- QUIZ -->
-
-        <div
-            class="site quiz s5"
-            id="site5">
-
-            <button
-                class="site-button"
-                onclick="openQuiz()">
-
-                ?
-
-            </button>
-
-            <div class="site-label">
-                History Quiz
-            </div>
-
-            <div class="site-status" id="siteStatus5">
-                +2 stamps / correct
-            </div>
-
-        </div>
-
-
-        <!-- MEMORY -->
-
-        <div
-            class="site s6"
-            id="site6">
-
-            <button
-                class="site-button"
-                onclick="openSite(6)">
-
-                ✚
-
-            </button>
-
-            <div class="site-label">
-                Memory Hub
-            </div>
-
-            <div
-                class="site-status"
-                id="siteStatus6">
-
-                Locked
-
-            </div>
-
-        </div>
-
+            <p class="eyebrow">3D HOLOGRAM · VR HEADSET POV</p>
+            <h2>Meet the commander</h2>
+            <p class="project-story">Stand before a holographic Lieutenant-General Percival and respond to the Battlebox decision.</p>
+            <div class="sensory-tags" aria-label="Interaction elements"><span>◈ 3D figure</span><span>◉ Look around</span><span>⌘ Choose a response</span></div>
+            <p class="simulation-note">Screen demo of a projected character and interactive encounter.</p>
+            <button class="primary project-button" type="button" onclick="openSite(4)">ENTER HOLOGRAM POV</button>
+        </article>
     </div>
 
-
-    <!-- INFO -->
-
-    <div class="info-grid">
-
-        <div class="info-card">
-
-            <h3>
-                EXPLORE
-            </h3>
-
-            <p>
-                Visit each landmark and explore
-                its documented role in
-                Singapore's wartime history.
-            </p>
-
+    <details class="other-stories">
+        <summary>Other story chapters <span>Two more stories from the archive</span></summary>
+        <div class="story-links">
+            <div id="site1">
+                <button class="secondary" type="button" onclick="openSite(1)">The Causeway Withdrawal</button>
+                <span class="site-status" id="siteStatus1">Unexplored</span>
+            </div>
+            <div id="site3">
+                <button class="secondary" type="button" onclick="openSite(3)">The Journey to Safety</button>
+                <span class="site-status" id="siteStatus3">Unexplored</span>
+            </div>
         </div>
+    </details>
 
-
-        <div class="info-card">
-
-            <h3>
-                COLLECT
-            </h3>
-
-            <p>
-                Complete a site to receive one
-                stamp and one fragment of the
-                daily dispatch.
-            </p>
-
-        </div>
-
-
-        <div class="info-card">
-
-            <h3>
-                REMEMBER
-            </h3>
-
-            <p>
-                Decode the final passphrase
-                before entering the Memory Wall.
-            </p>
-
-        </div>
-
+    <div class="extras-grid">
+        <article class="extra-card" id="site5">
+            <p class="eyebrow">HISTORY QUIZ</p>
+            <p>Test your knowledge and earn stamps.</p>
+            <span class="site-status" id="siteStatus5">+2 stamps / correct</span>
+            <button class="secondary" type="button" onclick="openQuiz()">START QUIZ</button>
+        </article>
+        <article class="extra-card" id="site6">
+            <p class="eyebrow">MEMORY WALL</p>
+            <p>Leave a message in the shared memory space.</p>
+            <span class="site-status" id="siteStatus6">Locked</span>
+            <button class="secondary" type="button" onclick="openSite(6)">OPEN MEMORY WALL</button>
+        </article>
     </div>
 
 
@@ -328,8 +145,7 @@
             id="passphraseLock"
             class="locked-message">
 
-            Complete all four story locations
-            to recover the four fragments.
+            Complete all four stories to recover the fragments.
 
         </p>
 
@@ -472,6 +288,8 @@
         </div>
 
         <div class="modal-content">
+
+            <p id="experienceGuide" class="experience-guide"></p>
 
             <div
                 id="storyContainer"
